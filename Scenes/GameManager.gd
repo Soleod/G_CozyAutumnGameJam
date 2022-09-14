@@ -27,13 +27,17 @@ func _unhandled_input(event):
 		GameState.RUNNING:
 			if event is InputEventKey:
 				if event.pressed and event.scancode == KEY_SPACE:
-					currentGameState = GameState.PAUSED
+					ChangeGameState(GameState.PAUSED)
 					emit_signal("state_change", currentGameState)
 		GameState.PAUSED:
 			if event is InputEventKey:
 				if event.pressed and event.scancode == KEY_SPACE:
-					currentGameState = GameState.RUNNING
+					ChangeGameState(GameState.RUNNING)
 					emit_signal("state_change", currentGameState)
+
+func ChangeGameState(newGameState):
+	print(currentGameState, " -> ", newGameState)
+	currentGameState = newGameState
 
 func _on_Timer_timeout():
 	if currentGameState == GameState.RUNNING:

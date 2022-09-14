@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Room.gd" type="Script" id=1]
 [ext_resource path="res://Art/A_EmptyRoom.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Building.gd" type="Script" id=3]
+[ext_resource path="res://Art/A_BlueRoom.png" type="Texture" id=4]
+[ext_resource path="res://Art/A_GreenRoom.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 51, 20.9999 )
@@ -22,16 +25,122 @@ shape = SubResource( 1 )
 
 [node name="OutsidePanel" type="Panel" parent="CanvasLayer"]
 visible = false
-modulate = Color( 1, 1, 1, 0.196078 )
+self_modulate = Color( 1, 1, 1, 0.352941 )
 margin_right = 640.0
 margin_bottom = 360.0
 
 [node name="BuildingPanel" type="Panel" parent="CanvasLayer/OutsidePanel"]
-visible = false
 margin_left = 100.0
 margin_top = 136.0
 margin_right = 539.0
 margin_bottom = 304.0
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/OutsidePanel/BuildingPanel"]
+margin_right = 439.0
+margin_bottom = 168.0
+color = Color( 0.568627, 0.439216, 0.192157, 1 )
+
+[node name="Building" type="Panel" parent="CanvasLayer/OutsidePanel/BuildingPanel"]
+margin_left = 44.0
+margin_top = 16.0
+margin_right = 140.0
+margin_bottom = 152.0
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/OutsidePanel/BuildingPanel/Building"]
+margin_left = 8.0
+margin_top = 40.0
+margin_right = 110.0
+margin_bottom = 82.0
+rect_scale = Vector2( 0.782, 0.973 )
+texture = ExtResource( 2 )
+stretch_mode = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/OutsidePanel/BuildingPanel/Building"]
+margin_left = 8.0
+margin_top = 104.0
+margin_right = 88.0
+margin_bottom = 124.0
+text = "Build"
+
+[node name="Label" type="Label" parent="CanvasLayer/OutsidePanel/BuildingPanel/Building"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 88.0
+margin_bottom = 30.0
+text = "Empty Room"
+align = 1
+valign = 1
+
+[node name="Building2" type="Panel" parent="CanvasLayer/OutsidePanel/BuildingPanel"]
+margin_left = 172.0
+margin_top = 16.0
+margin_right = 268.0
+margin_bottom = 152.0
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/OutsidePanel/BuildingPanel/Building2"]
+margin_left = 8.0
+margin_top = 40.0
+margin_right = 110.0
+margin_bottom = 82.0
+rect_scale = Vector2( 0.782, 0.973 )
+texture = ExtResource( 4 )
+stretch_mode = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/OutsidePanel/BuildingPanel/Building2"]
+margin_left = 8.0
+margin_top = 104.0
+margin_right = 88.0
+margin_bottom = 124.0
+text = "Build"
+
+[node name="Label" type="Label" parent="CanvasLayer/OutsidePanel/BuildingPanel/Building2"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 88.0
+margin_bottom = 30.0
+text = "Blue Room"
+align = 1
+valign = 1
+
+[node name="Building3" type="Panel" parent="CanvasLayer/OutsidePanel/BuildingPanel"]
+margin_left = 300.0
+margin_top = 16.0
+margin_right = 396.0
+margin_bottom = 152.0
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/OutsidePanel/BuildingPanel/Building3"]
+margin_left = 8.0
+margin_top = 40.0
+margin_right = 110.0
+margin_bottom = 82.0
+rect_scale = Vector2( 0.782, 0.973 )
+texture = ExtResource( 5 )
+stretch_mode = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/OutsidePanel/BuildingPanel/Building3"]
+margin_left = 8.0
+margin_top = 104.0
+margin_right = 88.0
+margin_bottom = 124.0
+text = "Build"
+
+[node name="Label" type="Label" parent="CanvasLayer/OutsidePanel/BuildingPanel/Building3"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 88.0
+margin_bottom = 30.0
+text = "Green Room"
+align = 1
+valign = 1
+
 [connection signal="gui_input" from="CanvasLayer/OutsidePanel" to="." method="_on_OutsidePanel_gui_input"]
 [connection signal="gui_input" from="CanvasLayer/OutsidePanel/BuildingPanel" to="." method="_on_BuildingPanel_gui_input"]
+[connection signal="build_room" from="CanvasLayer/OutsidePanel/BuildingPanel/Building" to="." method="_on_Building_build_room"]
+[connection signal="pressed" from="CanvasLayer/OutsidePanel/BuildingPanel/Building/Button" to="CanvasLayer/OutsidePanel/BuildingPanel/Building" method="_on_Button_pressed"]
+[connection signal="build_room" from="CanvasLayer/OutsidePanel/BuildingPanel/Building2" to="." method="_on_Building2_build_room"]
+[connection signal="pressed" from="CanvasLayer/OutsidePanel/BuildingPanel/Building2/Button" to="CanvasLayer/OutsidePanel/BuildingPanel/Building2" method="_on_Button_pressed"]
+[connection signal="build_room" from="CanvasLayer/OutsidePanel/BuildingPanel/Building3" to="." method="_on_Building3_build_room"]
+[connection signal="pressed" from="CanvasLayer/OutsidePanel/BuildingPanel/Building3/Button" to="CanvasLayer/OutsidePanel/BuildingPanel/Building3" method="_on_Button_pressed"]
