@@ -1,10 +1,32 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Room.gd" type="Script" id=1]
 [ext_resource path="res://Art/A_EmptyRoom.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Building.gd" type="Script" id=3]
-[ext_resource path="res://Art/A_BlueRoom.png" type="Texture" id=4]
+[ext_resource path="res://Art/A_ShroomRoom.png" type="Texture" id=4]
 [ext_resource path="res://Art/A_GreenRoom.png" type="Texture" id=5]
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform float Coldness : hint_range(0.0, 1.0, 0.1);
+
+void fragment() {
+	vec4 curr_color = texture(TEXTURE,UV);
+	
+	vec3 tmp = curr_color.rgb * vec3(0.3,0.59,0.11);
+	float grey = tmp.r + tmp.g + tmp.b;
+	COLOR.rgb = vec3(grey) * Coldness + curr_color.rgb * (1.0 - Coldness);
+	if(curr_color.a < 0.01){
+		COLOR.a = 0.0;
+	} else {
+		COLOR.a = 1.0;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 3 )
+shader_param/Coldness = null
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 51, 20.9999 )
@@ -15,10 +37,13 @@ scale = Vector2( 1.01961, 1.14286 )
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 2 )
+scale = Vector2( 0.999999, 1 )
 texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 102, 42 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -7.62939e-06, 0 )
+position = Vector2( 4.54747e-12, 0 )
 shape = SubResource( 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

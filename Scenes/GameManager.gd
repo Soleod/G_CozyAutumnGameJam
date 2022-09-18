@@ -13,7 +13,7 @@ var PauseButton: TextureButton
 
 var food: int = 0
 var sticks: int = 0
-var lodging: int = 0
+var leaves: int = 0
 var hedgehogs: int = 5
 
 var hour: int = 0
@@ -24,7 +24,6 @@ signal state_change(currentGameState)
 
 func _ready():
 	currentGameState = GameState.RUNNING
-	
 	gameTickTimer = Timer.new()
 	add_child(gameTickTimer)
 	gameTickTimer.connect("timeout", self, "_on_Timer_timeout")
