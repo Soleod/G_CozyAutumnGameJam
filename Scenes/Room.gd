@@ -4,6 +4,12 @@ var buildingPanel: Panel
 var outsidePanel: Panel
 var roomSprite: Sprite
 
+var foodProduction: int = 0
+var cost: int = 0
+var lodging: int = 0
+
+signal enable_next_room
+
 func _ready():
 	buildingPanel = $CanvasLayer/OutsidePanel/BuildingPanel
 	outsidePanel = $CanvasLayer/OutsidePanel
@@ -29,28 +35,30 @@ func _on_OutsidePanel_gui_input(event):
 			outsidePanel.hide()
 			GameManager.ChangeGameState(GameManager.GameState.RUNNING)
 
-
-func _on_BuildingPanel_gui_input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
-			print("Building")
-
-func _on_Building_build_room(buildingName, buildingTexture):
+func BuildRoom(buildingTexture: StreamTexture):
 	roomSprite.texture = buildingTexture
 	buildingPanel.hide()
 	outsidePanel.hide()
 	GameManager.ChangeGameState(GameManager.GameState.RUNNING)
+	emit_signal("enable_next_room")
 
 
-func _on_Building2_build_room(buildingName, buildingTexture):
-	roomSprite.texture = buildingTexture
-	buildingPanel.hide()
-	outsidePanel.hide()
-	GameManager.ChangeGameState(GameManager.GameState.RUNNING)
+func _on_BuildingEmpty_build_room(buildingName, buildingTexture):
+	BuildRoom(buildingTexture)
+	foodProduction = 0
+	cost = 0
+	lodging = 0
 
 
-func _on_Building3_build_room(buildingName, buildingTexture):
-	roomSprite.texture = buildingTexture
-	buildingPanel.hide()
-	outsidePanel.hide()
-	GameManager.ChangeGameState(GameManager.GameState.RUNNING)
+func _on_BuildingFood_build_room(buildingName, buildingTexture):
+	BuildRoom(buildingTexture)
+	foodProduction = 1
+	cost = 10
+	lodging = 0
+
+
+func _on_BuildingSleep_build_room(buildingName, buildingTexture):
+	BuildRoom(buildingTexture)
+	foodProduction = 0
+	cost = 10
+	lodging = 5

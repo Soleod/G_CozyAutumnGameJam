@@ -40,14 +40,14 @@ margin_right = 439.0
 margin_bottom = 168.0
 color = Color( 0.568627, 0.439216, 0.192157, 1 )
 
-[node name="Building" type="Panel" parent="CanvasLayer/OutsidePanel/BuildingPanel"]
+[node name="BuildingEmpty" type="Panel" parent="CanvasLayer/OutsidePanel/BuildingPanel"]
 margin_left = 44.0
 margin_top = 16.0
 margin_right = 140.0
 margin_bottom = 152.0
 script = ExtResource( 3 )
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/OutsidePanel/BuildingPanel/Building"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/OutsidePanel/BuildingPanel/BuildingEmpty"]
 margin_left = 8.0
 margin_top = 40.0
 margin_right = 110.0
@@ -56,14 +56,14 @@ rect_scale = Vector2( 0.782, 0.973 )
 texture = ExtResource( 2 )
 stretch_mode = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/OutsidePanel/BuildingPanel/Building"]
+[node name="Button" type="Button" parent="CanvasLayer/OutsidePanel/BuildingPanel/BuildingEmpty"]
 margin_left = 8.0
 margin_top = 104.0
 margin_right = 88.0
 margin_bottom = 124.0
 text = "Build"
 
-[node name="Label" type="Label" parent="CanvasLayer/OutsidePanel/BuildingPanel/Building"]
+[node name="Label" type="Label" parent="CanvasLayer/OutsidePanel/BuildingPanel/BuildingEmpty"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 88.0
@@ -72,14 +72,14 @@ text = "Empty Room"
 align = 1
 valign = 1
 
-[node name="Building2" type="Panel" parent="CanvasLayer/OutsidePanel/BuildingPanel"]
+[node name="BuildingFood" type="Panel" parent="CanvasLayer/OutsidePanel/BuildingPanel"]
 margin_left = 172.0
 margin_top = 16.0
 margin_right = 268.0
 margin_bottom = 152.0
 script = ExtResource( 3 )
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/OutsidePanel/BuildingPanel/Building2"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/OutsidePanel/BuildingPanel/BuildingFood"]
 margin_left = 8.0
 margin_top = 40.0
 margin_right = 110.0
@@ -88,14 +88,14 @@ rect_scale = Vector2( 0.782, 0.973 )
 texture = ExtResource( 4 )
 stretch_mode = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/OutsidePanel/BuildingPanel/Building2"]
+[node name="Button" type="Button" parent="CanvasLayer/OutsidePanel/BuildingPanel/BuildingFood"]
 margin_left = 8.0
 margin_top = 104.0
 margin_right = 88.0
 margin_bottom = 124.0
 text = "Build"
 
-[node name="Label" type="Label" parent="CanvasLayer/OutsidePanel/BuildingPanel/Building2"]
+[node name="Label" type="Label" parent="CanvasLayer/OutsidePanel/BuildingPanel/BuildingFood"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 88.0
@@ -104,14 +104,14 @@ text = "Blue Room"
 align = 1
 valign = 1
 
-[node name="Building3" type="Panel" parent="CanvasLayer/OutsidePanel/BuildingPanel"]
+[node name="BuildingSleep" type="Panel" parent="CanvasLayer/OutsidePanel/BuildingPanel"]
 margin_left = 300.0
 margin_top = 16.0
 margin_right = 396.0
 margin_bottom = 152.0
 script = ExtResource( 3 )
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/OutsidePanel/BuildingPanel/Building3"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/OutsidePanel/BuildingPanel/BuildingSleep"]
 margin_left = 8.0
 margin_top = 40.0
 margin_right = 110.0
@@ -120,14 +120,14 @@ rect_scale = Vector2( 0.782, 0.973 )
 texture = ExtResource( 5 )
 stretch_mode = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/OutsidePanel/BuildingPanel/Building3"]
+[node name="Button" type="Button" parent="CanvasLayer/OutsidePanel/BuildingPanel/BuildingSleep"]
 margin_left = 8.0
 margin_top = 104.0
 margin_right = 88.0
 margin_bottom = 124.0
 text = "Build"
 
-[node name="Label" type="Label" parent="CanvasLayer/OutsidePanel/BuildingPanel/Building3"]
+[node name="Label" type="Label" parent="CanvasLayer/OutsidePanel/BuildingPanel/BuildingSleep"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 88.0
@@ -137,10 +137,9 @@ align = 1
 valign = 1
 
 [connection signal="gui_input" from="CanvasLayer/OutsidePanel" to="." method="_on_OutsidePanel_gui_input"]
-[connection signal="gui_input" from="CanvasLayer/OutsidePanel/BuildingPanel" to="." method="_on_BuildingPanel_gui_input"]
-[connection signal="build_room" from="CanvasLayer/OutsidePanel/BuildingPanel/Building" to="." method="_on_Building_build_room"]
-[connection signal="pressed" from="CanvasLayer/OutsidePanel/BuildingPanel/Building/Button" to="CanvasLayer/OutsidePanel/BuildingPanel/Building" method="_on_Button_pressed"]
-[connection signal="build_room" from="CanvasLayer/OutsidePanel/BuildingPanel/Building2" to="." method="_on_Building2_build_room"]
-[connection signal="pressed" from="CanvasLayer/OutsidePanel/BuildingPanel/Building2/Button" to="CanvasLayer/OutsidePanel/BuildingPanel/Building2" method="_on_Button_pressed"]
-[connection signal="build_room" from="CanvasLayer/OutsidePanel/BuildingPanel/Building3" to="." method="_on_Building3_build_room"]
-[connection signal="pressed" from="CanvasLayer/OutsidePanel/BuildingPanel/Building3/Button" to="CanvasLayer/OutsidePanel/BuildingPanel/Building3" method="_on_Button_pressed"]
+[connection signal="build_room" from="CanvasLayer/OutsidePanel/BuildingPanel/BuildingEmpty" to="." method="_on_BuildingEmpty_build_room"]
+[connection signal="pressed" from="CanvasLayer/OutsidePanel/BuildingPanel/BuildingEmpty/Button" to="CanvasLayer/OutsidePanel/BuildingPanel/BuildingEmpty" method="_on_Button_pressed"]
+[connection signal="build_room" from="CanvasLayer/OutsidePanel/BuildingPanel/BuildingFood" to="." method="_on_BuildingFood_build_room"]
+[connection signal="pressed" from="CanvasLayer/OutsidePanel/BuildingPanel/BuildingFood/Button" to="CanvasLayer/OutsidePanel/BuildingPanel/BuildingFood" method="_on_Button_pressed"]
+[connection signal="build_room" from="CanvasLayer/OutsidePanel/BuildingPanel/BuildingSleep" to="." method="_on_BuildingSleep_build_room"]
+[connection signal="pressed" from="CanvasLayer/OutsidePanel/BuildingPanel/BuildingSleep/Button" to="CanvasLayer/OutsidePanel/BuildingPanel/BuildingSleep" method="_on_Button_pressed"]

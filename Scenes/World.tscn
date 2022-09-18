@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Art/A_Background.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/PauseLabel.tscn" type="PackedScene" id=2]
@@ -7,6 +7,15 @@
 [ext_resource path="res://Art/A_EmptyRoom.png" type="Texture" id=5]
 [ext_resource path="res://Art/A_Hedgehog.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/Room.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Art/A_Expedition_Button.png" type="Texture" id=8]
+[ext_resource path="res://Art/A_Pause_Play_Button.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/PausePlayButton.gd" type="Script" id=10]
+[ext_resource path="res://Art/A_GreenRoom.png" type="Texture" id=11]
+[ext_resource path="res://Art/A_PopUpButton.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/ExpeditionButton.gd" type="Script" id=13]
+[ext_resource path="res://Scenes/FoodCounter.gd" type="Script" id=14]
+[ext_resource path="res://Scenes/HedgehogsCounter.gd" type="Script" id=15]
+[ext_resource path="res://Scenes/StickCounter.gd" type="Script" id=16]
 
 [node name="Game" type="Node"]
 
@@ -19,19 +28,67 @@ texture = ExtResource( 1 )
 [node name="BuildingGrid" type="Node" parent="World"]
 script = ExtResource( 4 )
 
-[node name="Room" parent="World/BuildingGrid" instance=ExtResource( 7 )]
+[node name="RoomL11" parent="World/BuildingGrid" instance=ExtResource( 7 )]
+visible = false
 position = Vector2( 96, 136 )
+rotation = 0.000433657
 
-[node name="Room2" parent="World/BuildingGrid" instance=ExtResource( 7 )]
+[node name="RoomL12" parent="World/BuildingGrid" instance=ExtResource( 7 )]
 position = Vector2( 216, 136 )
 
-[node name="Shaft" type="Sprite" parent="World/BuildingGrid"]
+[node name="RoomL21" parent="World/BuildingGrid" instance=ExtResource( 7 )]
+visible = false
+position = Vector2( 96, 200 )
+
+[node name="RoomL22" parent="World/BuildingGrid" instance=ExtResource( 7 )]
+position = Vector2( 216, 200 )
+
+[node name="RoomL31" parent="World/BuildingGrid" instance=ExtResource( 7 )]
+visible = false
+position = Vector2( 96, 265 )
+
+[node name="RoomL32" parent="World/BuildingGrid" instance=ExtResource( 7 )]
+position = Vector2( 216, 265 )
+
+[node name="RoomR11" parent="World/BuildingGrid" instance=ExtResource( 7 )]
+position = Vector2( 424, 136 )
+rotation = 0.000433657
+
+[node name="RoomR12" parent="World/BuildingGrid" instance=ExtResource( 7 )]
+visible = false
+position = Vector2( 544, 136 )
+
+[node name="RoomR21" parent="World/BuildingGrid" instance=ExtResource( 7 )]
+position = Vector2( 424, 200 )
+
+[node name="RoomR22" parent="World/BuildingGrid" instance=ExtResource( 7 )]
+visible = false
+position = Vector2( 544, 200 )
+
+[node name="RoomR31" parent="World/BuildingGrid" instance=ExtResource( 7 )]
+position = Vector2( 424, 265 )
+
+[node name="RoomR32" parent="World/BuildingGrid" instance=ExtResource( 7 )]
+visible = false
+position = Vector2( 544, 265 )
+
+[node name="Shaft" type="Sprite" parent="World"]
 position = Vector2( 320, 192 )
 scale = Vector2( 0.627451, 4.38095 )
 texture = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="World"]
-position = Vector2( 574, 74 )
+position = Vector2( 544, 74 )
+z_index = 1
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="World"]
+position = Vector2( 544, 74 )
+z_index = 1
+texture = ExtResource( 6 )
+
+[node name="Sprite3" type="Sprite" parent="World"]
+position = Vector2( 456, 72 )
 z_index = 1
 texture = ExtResource( 6 )
 
@@ -49,3 +106,111 @@ margin_left = 296.0
 margin_top = 184.0
 margin_right = 344.0
 margin_bottom = 200.0
+
+[node name="PausePlayButton" type="TextureButton" parent="UI"]
+margin_left = 536.0
+margin_top = 8.0
+margin_right = 560.0
+margin_bottom = 32.0
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 11 )
+script = ExtResource( 10 )
+
+[node name="ExpeditionButton" type="TextureButton" parent="UI"]
+margin_left = 504.0
+margin_top = 8.0
+margin_right = 528.0
+margin_bottom = 32.0
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 8 )
+script = ExtResource( 13 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="UI/ExpeditionButton"]
+
+[node name="OutsidePanel" type="Panel" parent="UI/ExpeditionButton/CanvasLayer"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0 )
+margin_right = 640.0
+margin_bottom = 360.0
+
+[node name="InsidePanel" type="Panel" parent="UI/ExpeditionButton/CanvasLayer/OutsidePanel"]
+margin_left = 216.0
+margin_top = 160.0
+margin_right = 432.0
+margin_bottom = 240.0
+
+[node name="Label" type="Label" parent="UI/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel"]
+margin_left = 19.0
+margin_top = 17.0
+margin_right = 192.0
+margin_bottom = 31.0
+text = "Send Hedge on Expedition?"
+
+[node name="TextureButton" type="TextureButton" parent="UI/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel"]
+margin_left = 32.0
+margin_top = 40.0
+margin_right = 80.0
+margin_bottom = 64.0
+texture_normal = ExtResource( 12 )
+
+[node name="Label" type="Label" parent="UI/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel/TextureButton"]
+margin_right = 48.0
+margin_bottom = 24.0
+text = "Yes"
+align = 1
+valign = 1
+
+[node name="TextureButton2" type="TextureButton" parent="UI/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel"]
+margin_left = 128.0
+margin_top = 40.0
+margin_right = 176.0
+margin_bottom = 64.0
+texture_normal = ExtResource( 12 )
+
+[node name="Label" type="Label" parent="UI/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel/TextureButton2"]
+margin_right = 48.0
+margin_bottom = 24.0
+text = "No"
+align = 1
+valign = 1
+
+[node name="FoodCounter" type="Label" parent="UI"]
+margin_left = 416.0
+margin_top = 8.0
+margin_right = 456.0
+margin_bottom = 22.0
+text = "Food: 0"
+align = 1
+valign = 1
+script = ExtResource( 14 )
+
+[node name="HedgehogCounter" type="Label" parent="UI"]
+margin_left = 296.0
+margin_top = 8.0
+margin_right = 374.0
+margin_bottom = 22.0
+text = "Hedgehog: 0"
+align = 1
+valign = 1
+script = ExtResource( 15 )
+
+[node name="StickCounter" type="Label" parent="UI"]
+margin_left = 192.0
+margin_top = 8.0
+margin_right = 270.0
+margin_bottom = 22.0
+text = "Sticks: 0"
+align = 1
+valign = 1
+script = ExtResource( 16 )
+
+[connection signal="enable_next_room" from="World/BuildingGrid/RoomL12" to="World/BuildingGrid" method="_on_RoomL12_enable_next_room"]
+[connection signal="enable_next_room" from="World/BuildingGrid/RoomL22" to="World/BuildingGrid" method="_on_RoomL22_enable_next_room"]
+[connection signal="enable_next_room" from="World/BuildingGrid/RoomL32" to="World/BuildingGrid" method="_on_RoomL32_enable_next_room"]
+[connection signal="enable_next_room" from="World/BuildingGrid/RoomR11" to="World/BuildingGrid" method="_on_RoomR11_enable_next_room"]
+[connection signal="enable_next_room" from="World/BuildingGrid/RoomR21" to="World/BuildingGrid" method="_on_RoomR21_enable_next_room"]
+[connection signal="enable_next_room" from="World/BuildingGrid/RoomR31" to="World/BuildingGrid" method="_on_RoomR31_enable_next_room"]
+[connection signal="gui_input" from="UI/ExpeditionButton/CanvasLayer/OutsidePanel" to="UI/ExpeditionButton" method="_on_OutsidePanel_gui_input"]
