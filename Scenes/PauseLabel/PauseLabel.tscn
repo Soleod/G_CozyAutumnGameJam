@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scenes/PauseLabel.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/PauseLabel/PauseLabel.gd" type="Script" id=1]
 
 [node name="PauseLabel" type="Label"]
 margin_left = 488.0
