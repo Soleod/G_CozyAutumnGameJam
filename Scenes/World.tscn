@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/Clock/Clock.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/BuildingGrid/BuildingGrid.gd" type="Script" id=4]
 [ext_resource path="res://Art/A_EmptyRoom.png" type="Texture" id=5]
-[ext_resource path="res://Art/A_Hedgehog.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Hedgehog/Hedgehog.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Room/Room.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Art/A_Expedition_Button.png" type="Texture" id=8]
 [ext_resource path="res://Art/A_Pause_Play_Button.png" type="Texture" id=9]
@@ -77,21 +77,6 @@ position = Vector2( 544, 265 )
 position = Vector2( 320, 192 )
 scale = Vector2( 0.627451, 4.38095 )
 texture = ExtResource( 5 )
-
-[node name="Sprite" type="Sprite" parent="World"]
-position = Vector2( 544, 74 )
-z_index = 1
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="World"]
-position = Vector2( 544, 74 )
-z_index = 1
-texture = ExtResource( 6 )
-
-[node name="Sprite3" type="Sprite" parent="World"]
-position = Vector2( 456, 72 )
-z_index = 1
-texture = ExtResource( 6 )
 
 [node name="UI" type="Node" parent="."]
 
@@ -217,6 +202,9 @@ text = "Leaves: 0"
 align = 1
 valign = 1
 script = ExtResource( 17 )
+
+[node name="Node2D" parent="." instance=ExtResource( 6 )]
+position = Vector2( 279, 90 )
 
 [connection signal="enable_next_room" from="World/BuildingGrid/RoomL12" to="World/BuildingGrid" method="_on_RoomL12_enable_next_room"]
 [connection signal="enable_next_room" from="World/BuildingGrid/RoomL22" to="World/BuildingGrid" method="_on_RoomL22_enable_next_room"]
