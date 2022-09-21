@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform float Coldness : hint_range(0.0, 1.0, 0.1);
+
+void fragment() {
+	vec4 curr_color = texture(TEXTURE,UV);
+	
+	vec3 tmp = curr_color.rgb * vec3(0.3,0.59,0.11);
+	float grey = tmp.r + tmp.g + tmp.b;
+	COLOR.rgb = vec3(grey) * Coldness + curr_color.rgb * (1.0 - Coldness);
+	if(curr_color.a < 0.01){
+		COLOR.a = 0.0;
+	} else {
+		COLOR.a = 1.0;
+	}
+}"
+
+[resource]
+shader = SubResource( 3 )
+shader_param/Coldness = null

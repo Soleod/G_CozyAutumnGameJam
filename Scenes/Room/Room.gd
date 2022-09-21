@@ -38,7 +38,7 @@ func on_click():
 
 func _on_GameManager_game_tick():
 	if(coldness != 110):
-		coldness += 1
+		coldness += 5
 		if(coldness == 100):
 			coldness = 100
 		roomShader.set("shader_param/Coldness", coldness / 100.0)
