@@ -1,10 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/Building/Building.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Room/Room.gd" type="Script" id=2]
 [ext_resource path="res://Art/A_ShroomRoom.png" type="Texture" id=3]
 [ext_resource path="res://Art/A_GreenRoom.png" type="Texture" id=4]
 [ext_resource path="res://Art/A_EmptyRoom.png" type="Texture" id=5]
+[ext_resource path="res://Art/Shroom Room/Room.png" type="Texture" id=6]
+[ext_resource path="res://Art/Shroom Room/Left_open.png" type="Texture" id=7]
+[ext_resource path="res://Art/Shroom Room/Left_closed.png" type="Texture" id=8]
+[ext_resource path="res://Art/Shroom Room/Right_open.png" type="Texture" id=9]
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -28,26 +32,60 @@ void fragment() {
 shader = SubResource( 3 )
 shader_param/Coldness = null
 
+[sub_resource type="NavigationPolygon" id=4]
+vertices = PoolVector2Array( -44, 20, 44, 20, 44, 21, -44, 21 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -44, 21, 44, 21, 44, 20, -44, 20 ) ]
+
+[sub_resource type="NavigationPolygon" id=5]
+vertices = PoolVector2Array( -4, 18, 4.00002, 18, 4.00002, 19, -4, 19 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -4, 19, 4.00002, 19, 4.00002, 18, -4, 18 ) ]
+
+[sub_resource type="NavigationPolygon" id=6]
+vertices = PoolVector2Array( 4, 19, -4, 19, -4, 18, 4, 18 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 4, 19, -4, 19, -4, 18, 4, 18 ) ]
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 51, 20.9999 )
 
-[sub_resource type="NavigationPolygon" id=4]
-vertices = PoolVector2Array( -50.9999, 20.1249, 77.4806, 20.1249, 77.4806, 20.9999, -50.9999, 20.9999 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( -50.9999, 20.9999, 77.4806, 20.9999, 77.4806, 20.1249, -50.9999, 20.1249 ) ]
-
 [node name="Room" type="Area2D"]
 position = Vector2( 100, 136 )
-scale = Vector2( 1.01961, 1.14286 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 2 )
 scale = Vector2( 0.999999, 1 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 102, 42 )
 
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite"]
+scale = Vector2( 1, 1 )
+navpoly = SubResource( 4 )
+
+[node name="SpriteR" type="Sprite" parent="Sprite"]
+position = Vector2( 48, 2 )
+texture = ExtResource( 9 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite/SpriteR"]
+navpoly = SubResource( 5 )
+
+[node name="SpriteLO" type="Sprite" parent="Sprite"]
+visible = false
+position = Vector2( -48, 2 )
+texture = ExtResource( 7 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite/SpriteLO"]
+navpoly = SubResource( 6 )
+
+[node name="SpriteLC" type="Sprite" parent="Sprite"]
+position = Vector2( -47.5, 2 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 8 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 4.54747e-12, 0 )
 shape = SubResource( 1 )
 
@@ -165,9 +203,6 @@ margin_bottom = 30.0
 text = "Green Room"
 align = 1
 valign = 1
-
-[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
-navpoly = SubResource( 4 )
 
 [connection signal="gui_input" from="CanvasLayer/OutsidePanel" to="." method="_on_OutsidePanel_gui_input"]
 [connection signal="build_room" from="CanvasLayer/OutsidePanel/BuildingPanel/BuildingEmpty" to="." method="_on_BuildingEmpty_build_room"]

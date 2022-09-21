@@ -29,29 +29,3 @@ func _on_GameManager_game_tick():
 	print("Direction: ", direction)
 	$Line2D.points = path
 	$Hedgehog.path = path
-
-func EnableRoom(roomName: String):
-	roomDict[roomName].show()
-
-func _on_RoomL12_enable_next_room():
-	EnableRoom("RoomL11")
-
-
-func _on_RoomL22_enable_next_room():
-	EnableRoom("RoomL21")
-
-
-func _on_RoomL32_enable_next_room():
-	EnableRoom("RoomL31")
-
-
-func _on_RoomR11_enable_next_room():
-	EnableRoom("RoomR12")
-
-
-func _on_RoomR21_enable_next_room():
-	EnableRoom("RoomR22")
-
-
-func _on_RoomR31_enable_next_room():
-	EnableRoom("RoomR32")
