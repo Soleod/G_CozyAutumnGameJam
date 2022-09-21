@@ -59,10 +59,10 @@ position = Vector2( 316, 91 )
 [node name="UI" type="Node" parent="."]
 
 [node name="Clock" parent="UI" instance=ExtResource( 3 )]
-margin_left = 576.0
-margin_top = 0.0
-margin_right = 640.0
-margin_bottom = 64.0
+margin_left = 600.0
+margin_top = 3.0
+margin_right = 635.0
+margin_bottom = 38.0
 
 [node name="PauseLabel" parent="UI" instance=ExtResource( 2 )]
 visible = false
