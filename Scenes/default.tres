@@ -7,3 +7,4 @@ font_data = ExtResource( 1 )
 
 [resource]
 default_font = SubResource( 2 )
+Label/fonts/font = SubResource( 2 )

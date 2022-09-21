@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Art/MAIN_IMAGE.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/PauseLabel/PauseLabel.tscn" type="PackedScene" id=2]
@@ -21,6 +21,8 @@
 [ext_resource path="res://Art/Resources/Leaves.png" type="Texture" id=19]
 [ext_resource path="res://Art/Resources/Sticks.png" type="Texture" id=20]
 [ext_resource path="res://Scenes/default.tres" type="Theme" id=21]
+[ext_resource path="res://Scenes/ExpeditionProgress/ExpeditionProgress.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scenes/Expeditions.gd" type="Script" id=23]
 
 [node name="Game" type="Node"]
 
@@ -162,10 +164,11 @@ texture = ExtResource( 18 )
 
 [node name="leavesCounter" type="Label" parent="UI/Inventory"]
 margin_left = 13.0
-margin_top = 20.0
+margin_top = 19.0
 margin_right = 38.0
-margin_bottom = 34.0
+margin_bottom = 33.0
 theme = ExtResource( 21 )
+custom_colors/font_color = Color( 0.34902, 0.243137, 0.286275, 1 )
 text = "0"
 valign = 1
 clip_text = true
@@ -173,10 +176,11 @@ script = ExtResource( 17 )
 
 [node name="StickCounter" type="Label" parent="UI/Inventory"]
 margin_left = 13.0
-margin_top = 10.0
+margin_top = 9.0
 margin_right = 38.0
-margin_bottom = 23.0
+margin_bottom = 22.0
 theme = ExtResource( 21 )
+custom_colors/font_color = Color( 0.34902, 0.243137, 0.286275, 1 )
 text = "1234"
 valign = 1
 clip_text = true
@@ -205,14 +209,27 @@ texture = ExtResource( 19 )
 
 [node name="FoodCounter" type="Label" parent="UI/Inventory"]
 margin_left = 13.0
+margin_top = -1.0
 margin_right = 38.0
-margin_bottom = 14.0
+margin_bottom = 13.0
 theme = ExtResource( 21 )
+custom_colors/font_color = Color( 0.34902, 0.243137, 0.286275, 1 )
 text = "12345"
 valign = 1
 clip_text = true
 max_lines_visible = 1
 script = ExtResource( 14 )
+
+[node name="Expeditions" type="Control" parent="UI"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 23 )
+
+[node name="Node2D" parent="UI/Expeditions" instance=ExtResource( 22 )]
+margin_left = 476.0
+margin_top = 15.64
+margin_right = 473.68
+margin_bottom = 14.76
 
 [connection signal="enable_next_room" from="World/BuildingGrid/RoomL12" to="World/BuildingGrid" method="_on_RoomL12_enable_next_room"]
 [connection signal="enable_next_room" from="World/BuildingGrid/RoomL22" to="World/BuildingGrid" method="_on_RoomL22_enable_next_room"]
