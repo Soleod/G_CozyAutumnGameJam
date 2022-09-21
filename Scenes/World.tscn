@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Art/MAIN_IMAGE.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/PauseLabel/PauseLabel.tscn" type="PackedScene" id=2]
@@ -21,7 +21,6 @@
 [ext_resource path="res://Art/Resources/Leaves.png" type="Texture" id=19]
 [ext_resource path="res://Art/Resources/Sticks.png" type="Texture" id=20]
 [ext_resource path="res://Scenes/default.tres" type="Theme" id=21]
-[ext_resource path="res://Scenes/ExpeditionProgress/ExpeditionProgress.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Scenes/Expeditions.gd" type="Script" id=23]
 
 [node name="Game" type="Node"]
@@ -84,65 +83,6 @@ enabled_focus_mode = 0
 texture_normal = ExtResource( 9 )
 texture_pressed = ExtResource( 11 )
 script = ExtResource( 10 )
-
-[node name="ExpeditionButton" type="TextureButton" parent="UI"]
-margin_left = 578.0
-margin_top = 22.0
-margin_right = 594.0
-margin_bottom = 38.0
-focus_mode = 0
-enabled_focus_mode = 0
-texture_normal = ExtResource( 8 )
-script = ExtResource( 13 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="UI/ExpeditionButton"]
-
-[node name="OutsidePanel" type="Panel" parent="UI/ExpeditionButton/CanvasLayer"]
-visible = false
-self_modulate = Color( 1, 1, 1, 0 )
-margin_right = 640.0
-margin_bottom = 360.0
-
-[node name="InsidePanel" type="Panel" parent="UI/ExpeditionButton/CanvasLayer/OutsidePanel"]
-margin_left = 216.0
-margin_top = 160.0
-margin_right = 432.0
-margin_bottom = 240.0
-
-[node name="Label" type="Label" parent="UI/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel"]
-margin_left = 19.0
-margin_top = 17.0
-margin_right = 192.0
-margin_bottom = 31.0
-text = "Send Hedge on Expedition?"
-
-[node name="TextureButton" type="TextureButton" parent="UI/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel"]
-margin_left = 32.0
-margin_top = 40.0
-margin_right = 80.0
-margin_bottom = 64.0
-texture_normal = ExtResource( 12 )
-
-[node name="Label" type="Label" parent="UI/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel/TextureButton"]
-margin_right = 48.0
-margin_bottom = 24.0
-text = "Yes"
-align = 1
-valign = 1
-
-[node name="TextureButton2" type="TextureButton" parent="UI/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel"]
-margin_left = 128.0
-margin_top = 40.0
-margin_right = 176.0
-margin_bottom = 64.0
-texture_normal = ExtResource( 12 )
-
-[node name="Label" type="Label" parent="UI/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel/TextureButton2"]
-margin_right = 48.0
-margin_bottom = 24.0
-text = "No"
-align = 1
-valign = 1
 
 [node name="HedgehogCounter" type="Label" parent="UI"]
 margin_left = 282.0
@@ -225,13 +165,66 @@ margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 23 )
 
-[node name="Node2D" parent="UI/Expeditions" instance=ExtResource( 22 )]
-margin_left = 476.0
-margin_top = 15.64
-margin_right = 473.68
-margin_bottom = 14.76
+[node name="ExpeditionButton" type="TextureButton" parent="UI/Expeditions"]
+margin_left = 578.0
+margin_top = 22.0
+margin_right = 594.0
+margin_bottom = 38.0
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 8 )
+script = ExtResource( 13 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="UI/Expeditions/ExpeditionButton"]
+
+[node name="OutsidePanel" type="Panel" parent="UI/Expeditions/ExpeditionButton/CanvasLayer"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0 )
+margin_right = 640.0
+margin_bottom = 360.0
+
+[node name="InsidePanel" type="Panel" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel"]
+margin_left = 216.0
+margin_top = 160.0
+margin_right = 432.0
+margin_bottom = 240.0
+
+[node name="Label" type="Label" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel"]
+margin_left = 19.0
+margin_top = 17.0
+margin_right = 192.0
+margin_bottom = 31.0
+text = "Send Hedge on Expedition?"
+
+[node name="TextureButton" type="TextureButton" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel"]
+margin_left = 32.0
+margin_top = 40.0
+margin_right = 80.0
+margin_bottom = 64.0
+texture_normal = ExtResource( 12 )
+
+[node name="Label" type="Label" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel/TextureButton"]
+margin_right = 48.0
+margin_bottom = 24.0
+text = "Yes"
+align = 1
+valign = 1
+
+[node name="TextureButton2" type="TextureButton" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel"]
+margin_left = 128.0
+margin_top = 40.0
+margin_right = 176.0
+margin_bottom = 64.0
+texture_normal = ExtResource( 12 )
+
+[node name="Label" type="Label" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel/TextureButton2"]
+margin_right = 48.0
+margin_bottom = 24.0
+text = "No"
+align = 1
+valign = 1
 
 [connection signal="enable_next_room" from="World/BuildingGrid/RoomL12" to="World/BuildingGrid" method="_on_RoomL12_enable_next_room"]
 [connection signal="enable_next_room" from="World/BuildingGrid/RoomL22" to="World/BuildingGrid" method="_on_RoomL22_enable_next_room"]
 [connection signal="enable_next_room" from="World/BuildingGrid/RoomL32" to="World/BuildingGrid" method="_on_RoomL32_enable_next_room"]
-[connection signal="gui_input" from="UI/ExpeditionButton/CanvasLayer/OutsidePanel" to="UI/ExpeditionButton" method="_on_OutsidePanel_gui_input"]
+[connection signal="gui_input" from="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel" to="UI/Expeditions/ExpeditionButton" method="_on_OutsidePanel_gui_input"]

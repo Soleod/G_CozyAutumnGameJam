@@ -21,6 +21,7 @@ var hour: int = 0
 signal game_tick
 signal clock_tick
 signal state_change(currentGameState)
+signal inventory_changed
 
 func _ready():
 	currentGameState = GameState.RUNNING
@@ -60,3 +61,16 @@ func _on_Timer_timeout():
 			if hour == 24:
 				hour = 0
 			emit_signal("clock_tick")
+
+
+func add_leaves(amount):
+	leaves += amount
+	emit_signal("inventory_changed")
+
+func add_food(amount):
+	food += amount
+	emit_signal("inventory_changed")
+
+func add_sticks(amount):
+	sticks += amount
+	emit_signal("inventory_changed")

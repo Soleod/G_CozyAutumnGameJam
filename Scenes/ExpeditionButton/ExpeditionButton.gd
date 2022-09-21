@@ -7,6 +7,7 @@ extends TextureButton
 
 var outsidePanel: Panel
 var insidePanel: Panel
+signal expedition_started
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,6 +16,7 @@ func _ready():
 
 
 func _pressed():
+	emit_signal("expedition_started")
 	match GameManager.currentGameState:
 		GameManager.GameState.RUNNING:
 			GameManager.ChangeGameState(GameManager.GameState.EXPEDITION)

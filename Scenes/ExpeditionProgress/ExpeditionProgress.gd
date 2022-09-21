@@ -20,3 +20,4 @@ func _process(delta):
 	hedgehog.position = startPos.linear_interpolate(endPos, progress)
 	if progress >=1:
 		emit_signal("expedition_finished")
+		free()
