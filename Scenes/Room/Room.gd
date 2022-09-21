@@ -62,6 +62,7 @@ func BuildRoom(buildingTexture: StreamTexture):
 	if (nextRoomIndex != 4 and nextRoomIndex != 7 and nextRoomIndex != 10):
 		$Sprite/SpriteLO.show()
 		$Sprite/SpriteLC.hide()
+		$Sprite/SpriteLO/NavigationPolygonInstance.enabled = true
 	emit_signal("enable_next_room", self.name.get_slice("_", 0) + "_" + String(nextRoomIndex))
 
 func _on_BuildingEmpty_build_room(buildingName, buildingTexture):
@@ -86,7 +87,6 @@ func _on_BuildingSleep_build_room(buildingName, buildingTexture):
 	cost = 10
 	lodging = 5
 	coldness = 0
-
 
 
 func _on_Room1_enable_next_room(roomName):

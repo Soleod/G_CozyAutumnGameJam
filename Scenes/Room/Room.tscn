@@ -61,27 +61,32 @@ texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 102, 42 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite"]
-scale = Vector2( 1, 1 )
+position = Vector2( 0, 2 )
 navpoly = SubResource( 4 )
 
 [node name="SpriteR" type="Sprite" parent="Sprite"]
+use_parent_material = true
 position = Vector2( 48, 2 )
 texture = ExtResource( 9 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite/SpriteR"]
+position = Vector2( 0, 2 )
 navpoly = SubResource( 5 )
 
 [node name="SpriteLO" type="Sprite" parent="Sprite"]
 visible = false
+use_parent_material = true
 position = Vector2( -48, 2 )
 texture = ExtResource( 7 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Sprite/SpriteLO"]
+position = Vector2( 0, 2 )
 navpoly = SubResource( 6 )
+enabled = false
 
 [node name="SpriteLC" type="Sprite" parent="Sprite"]
+use_parent_material = true
 position = Vector2( -47.5, 2 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
