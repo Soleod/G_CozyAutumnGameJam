@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Building/Building.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Room/Room.gd" type="Script" id=2]
@@ -30,6 +30,11 @@ shader_param/Coldness = null
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 51, 20.9999 )
+
+[sub_resource type="NavigationPolygon" id=4]
+vertices = PoolVector2Array( -50.9999, 20.1249, 77.4806, 20.1249, 77.4806, 20.9999, -50.9999, 20.9999 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -50.9999, 20.9999, 77.4806, 20.9999, 77.4806, 20.1249, -50.9999, 20.1249 ) ]
 
 [node name="Room" type="Area2D"]
 position = Vector2( 100, 136 )
@@ -160,6 +165,9 @@ margin_bottom = 30.0
 text = "Green Room"
 align = 1
 valign = 1
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
+navpoly = SubResource( 4 )
 
 [connection signal="gui_input" from="CanvasLayer/OutsidePanel" to="." method="_on_OutsidePanel_gui_input"]
 [connection signal="build_room" from="CanvasLayer/OutsidePanel/BuildingPanel/BuildingEmpty" to="." method="_on_BuildingEmpty_build_room"]

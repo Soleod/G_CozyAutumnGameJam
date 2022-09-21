@@ -37,7 +37,6 @@ func on_click():
 	GameManager.ChangeGameState(GameManager.GameState.BUILDING)
 
 func _on_GameManager_game_tick():
-	print("Cold", roomShader.get("shader_param/Coldness"))
 	if(coldness != 110):
 		coldness += 1
 		if(coldness == 100):

@@ -1,53 +1,32 @@
 extends Node2D
 
-enum HedgehogState{
-	MOVING,
-	WAITING
-}
+var hedgehogSprite: Sprite
+var path: PoolVector2Array
 
-export var velocity = 50
-export var groundLevel = 90
-export var groundWidth = 600
-export var wallOffset = 50
-
-
-var state:int
-var waitTimeLeft:float
-var moveStartPosition:Vector2
-var moveTargetPosition:Vector2
-var moveTime: float
+var speed: int = 50
 
 func _ready():
-	_start_wait()
-
+	hedgehogSprite = $HedgehogSprite
+	path = PoolVector2Array()
 
 func _process(delta):
-	match(state):
-		HedgehogState.WAITING:
-			_wait(delta)
-		HedgehogState.MOVING:
-			_move(delta)
-	
-
-func _start_wait():
-	waitTimeLeft = (randi() % 400 + 100) / 100.0
-	state = HedgehogState.WAITING
-	
-func _start_move():
-	state = HedgehogState.MOVING
-	moveStartPosition = Vector2(position.x, groundLevel)
-	moveTargetPosition = Vector2(randi() % (groundWidth - (2 * wallOffset)) + wallOffset, groundLevel)
-	moveTime = 0
-	
-
-func _wait(delta):
-	waitTimeLeft -= delta
-	if waitTimeLeft < 0:
-		_start_move()
-
-func _move(delta):
-	moveTime += delta
-	var direction = (moveTargetPosition - moveStartPosition).normalized()
-	position = moveStartPosition + (direction * velocity * moveTime)
-	if (moveTargetPosition - position).length() < 2:
-		_start_wait()
+	# Calculate the movement distance for this frame
+	var distance_to_walk = speed * delta
+	# Move the player along the path until he has run out of movement or the path ends.
+	while distance_to_walk > 0 and path.size() > 0:
+		var distance_to_next_point = position.distance_to(path[0])
+		var hedgehogDirectionValue = position.x - path[0].x
+		if (hedgehogDirectionValue < 0):
+			hedgehogSprite.flip_h = true
+		else:
+			hedgehogSprite.flip_h = false
+		if distance_to_walk <= distance_to_next_point:
+			# The player does not have enough movement left to get to the next point.
+			position += position.direction_to(path[0]) * distance_to_walk
+		else:
+			# The player get to the next point
+			position = path[0]
+			path.remove(0)
+		# Update the distance to walk
+		distance_to_walk -= distance_to_next_point
+		
