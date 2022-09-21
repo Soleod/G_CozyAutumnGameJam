@@ -1626,15 +1626,15 @@ max_lines_visible = 1
 script = ExtResource( 14 )
 
 [node name="Expeditions" type="Control" parent="UI"]
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 23 )
-
-[node name="ExpeditionButton" type="TextureButton" parent="UI/Expeditions"]
 margin_left = 549.0
 margin_top = 8.0
 margin_right = 596.0
-margin_bottom = 24.0
+margin_bottom = 19.0
+script = ExtResource( 23 )
+
+[node name="ExpeditionButton" type="TextureButton" parent="UI/Expeditions"]
+margin_right = 47.0
+margin_bottom = 16.0
 focus_mode = 0
 enabled_focus_mode = 0
 texture_normal = ExtResource( 22 )

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Art/A_EmptyRoom.png" type="Texture" id=1]
-[ext_resource path="res://Art/A_Hedgehog.png" type="Texture" id=2]
+[ext_resource path="res://Art/UI/Journey Panel/Journey.png" type="Texture" id=1]
+[ext_resource path="res://Art/UI/Journey Panel/Journey progress/Hedgehog Icon.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/ExpeditionProgress/ExpeditionProgress.gd" type="Script" id=3]
+[ext_resource path="res://Art/UI/Journey Panel/Journey progress/Journey Bar.png" type="Texture" id=4]
 
 [node name="Node2D" type="Control"]
 anchor_top = -0.016
@@ -14,21 +15,26 @@ margin_bottom = -2.16
 script = ExtResource( 3 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_top = 7.0
-margin_right = 37.0
-margin_bottom = 9.0
+margin_top = -6.0
+margin_right = 47.0
+margin_bottom = 5.0
 texture = ExtResource( 1 )
 expand = true
-stretch_mode = 1
+stretch_mode = 3
 
 [node name="AHedgehog" type="Sprite" parent="."]
-position = Vector2( 4, 5 )
-scale = Vector2( 0.15625, 0.15625 )
+position = Vector2( 8, 0 )
 texture = ExtResource( 2 )
-flip_h = true
 
 [node name="StartPos" type="Position2D" parent="."]
-position = Vector2( 4, 5 )
+position = Vector2( 8, 0 )
 
 [node name="EndPos" type="Position2D" parent="."]
-position = Vector2( 34, 5 )
+position = Vector2( 41, 0 )
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+margin_left = 2.0
+margin_top = 1.0
+margin_right = 44.0
+margin_bottom = 4.0
+texture = ExtResource( 4 )

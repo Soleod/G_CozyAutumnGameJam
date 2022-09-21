@@ -18,6 +18,6 @@ func _ready():
 func _process(delta):
 	progress += delta/expeditionTime
 	hedgehog.position = startPos.linear_interpolate(endPos, progress)
-	if progress >=1:
+	if progress >= 1:
 		emit_signal("expedition_finished")
 		free()
