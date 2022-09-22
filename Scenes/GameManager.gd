@@ -5,7 +5,8 @@ enum GameState {
 	PAUSED,
 	BUILDING,
 	EXPEDITION,
-	GAMEOVER
+	GAMEOVER,
+	WIN
 }
 
 enum TemperatureState {
@@ -38,6 +39,7 @@ signal sec_clock_tick
 signal state_change(currentGameState)
 signal inventory_changed
 signal game_over
+signal win
 
 func _ready():
 	currentGameState = GameState.RUNNING
@@ -68,6 +70,8 @@ func ChangeGameState(newGameState):
 
 func _on_Timer_timeout():
 	if currentGameState == GameState.RUNNING:
+		if(day == 5):
+			emit_signal("win")
 		if(hour == 0):
 			hour += 1
 			emit_signal("clock_tick")

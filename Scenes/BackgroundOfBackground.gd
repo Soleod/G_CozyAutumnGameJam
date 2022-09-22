@@ -5,19 +5,18 @@ extends Sprite
 # var a = 2
 # var b = "text"
 var backgroundShader: Material
-var hourBonus: float = 2.0
+var hourForShader: float = 2.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GameManager.connect("clock_tick", self, "_on_GameManager_game_tick")
 	backgroundShader = self.material
 	
 func _process(delta):
 	if(GameManager.currentGameState == GameManager.GameState.RUNNING):
-		hourBonus += delta * (1.0 / GameManager.tick_rate)
-		if hourBonus >= 8.0:
-			hourBonus -= 8.0
-		backgroundShader.set("shader_param/Hour", hourBonus)
+		hourForShader += delta * (1.0 / GameManager.tick_rate)
+		if hourForShader >= 8.0:
+			hourForShader -= 8.0
+		backgroundShader.set("shader_param/Hour", hourForShader)
 		#print(backgroundShader.get("shader_param/Hour"))
 
 func _on_GameManager_game_tick():

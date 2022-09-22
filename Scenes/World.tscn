@@ -30,6 +30,7 @@
 [ext_resource path="res://Scenes/BackgroundOfBackground.gd" type="Script" id=28]
 [ext_resource path="res://Art/Tree/Tree.png" type="Texture" id=29]
 [ext_resource path="res://Art/Tree/Tree Fg.png" type="Texture" id=30]
+[ext_resource path="res://Scenes/WinPanel.gd" type="Script" id=29]
 [ext_resource path="res://Art/UI/Hedgehogs Panel/Hedgehog Icon.png" type="Texture" id=31]
 [ext_resource path="res://Art/UI/Hedgehogs Panel/Hedgehogs.png" type="Texture" id=32]
 [ext_resource path="res://Art/UI/Dialog Confirm/Dialog.png" type="Texture" id=33]
@@ -155,9 +156,6 @@ scale = Vector2( 6.27451, 2.16667 )
 z_index = -1
 texture = ExtResource( 27 )
 script = ExtResource( 28 )
-
-[node name="Line2D" type="Line2D" parent="World/BuildingGrid"]
-visible = false
 
 [node name="Sprite" type="Sprite" parent="World/BuildingGrid"]
 position = Vector2( 382, 138 )
@@ -313,7 +311,7 @@ script = ExtResource( 23 )
 
 [node name="ExpeditionButton" type="TextureButton" parent="UI/Expeditions"]
 margin_right = 47.0
-margin_bottom = 16.0
+margin_bottom = 11.0
 focus_mode = 0
 enabled_focus_mode = 0
 texture_normal = ExtResource( 22 )
@@ -445,6 +443,26 @@ theme = ExtResource( 21 )
 text = "Game Over
 You ran out of Food!
 Press F5 to restart"
+align = 1
+valign = 1
+
+[node name="WinPanel" type="Panel" parent="UI"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.564706 )
+margin_right = 640.0
+margin_bottom = 360.0
+script = ExtResource( 29 )
+
+[node name="Label" type="Label" parent="UI/WinPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -41.0
+margin_top = -22.5
+margin_right = 41.0
+margin_bottom = 22.5
+theme = ExtResource( 21 )
 align = 1
 valign = 1
 
