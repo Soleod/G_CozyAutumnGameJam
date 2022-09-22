@@ -8,7 +8,6 @@ var expeditionButton: Node
 func _ready():
 	expeditionProgressScene = load("res://Scenes/ExpeditionProgress/ExpeditionProgress.tscn")
 	expeditionButton = $ExpeditionButton
-	expeditionButton.connect("expedition_started", self, "_on_expedition_started")
 
 
 func _on_expedition_started():

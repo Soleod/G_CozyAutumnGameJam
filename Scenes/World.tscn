@@ -343,14 +343,14 @@ text = "Expedition!"
 align = 1
 valign = 1
 
-[node name="TextureButton" type="TextureButton" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel"]
+[node name="YesButton" type="TextureButton" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel"]
 margin_left = 25.0
 margin_top = 69.0
 margin_right = 69.0
 margin_bottom = 84.0
 texture_normal = ExtResource( 34 )
 
-[node name="Label" type="Label" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel/TextureButton"]
+[node name="Label" type="Label" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel/YesButton"]
 margin_left = 1.0
 margin_right = 42.0
 margin_bottom = 13.0
@@ -360,14 +360,14 @@ text = "Yes"
 align = 1
 valign = 1
 
-[node name="TextureButton2" type="TextureButton" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel"]
+[node name="NoButton" type="TextureButton" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel"]
 margin_left = 125.0
 margin_top = 69.0
 margin_right = 169.0
 margin_bottom = 84.0
 texture_normal = ExtResource( 35 )
 
-[node name="Label" type="Label" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel/TextureButton2"]
+[node name="Label" type="Label" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel/NoButton"]
 margin_left = 1.0
 margin_right = 42.0
 margin_bottom = 13.0
@@ -482,3 +482,6 @@ valign = 1
 [connection signal="spawn_hedgehog" from="World/BuildingGrid/Room_8" to="World/BuildingGrid" method="_on_spawn_hedgehog"]
 [connection signal="spawn_hedgehog" from="World/BuildingGrid/Room_9" to="World/BuildingGrid" method="_on_spawn_hedgehog"]
 [connection signal="gui_input" from="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel" to="UI/Expeditions/ExpeditionButton" method="_on_OutsidePanel_gui_input"]
+[connection signal="button_up" from="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel/YesButton" to="UI/Expeditions" method="_on_expedition_started"]
+[connection signal="button_up" from="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel/YesButton" to="UI/Expeditions/ExpeditionButton" method="close_expedition_dialog"]
+[connection signal="button_up" from="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel/NoButton" to="UI/Expeditions/ExpeditionButton" method="close_expedition_dialog"]
