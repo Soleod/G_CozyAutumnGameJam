@@ -12,6 +12,7 @@ var shadedElements = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameManager.connect("clock_tick", self, "_on_clock_tick")
+	GameManager.connect("game_tick", self, "_on_game_tick")
 	hedgehogs = [$Hedgehog]
 	for room in self.get_children():
 		roomDict[room.name] = room
@@ -19,7 +20,7 @@ func _ready():
 	expeditionTargetPos = $ExpeditionTarget.position
 	shadedElements = [$Bush, $Tree, $Grass]
 
-func _on_clock_tick():
+func _on_game_tick():
 	var tmpFoodProdution = 0
 	for room in self.get_children():
 		if room is Area2D:
@@ -27,8 +28,9 @@ func _on_clock_tick():
 	combinedFoodProduction = tmpFoodProdution
 	print("Food Production: ", combinedFoodProduction)
 	GameManager.add_food(combinedFoodProduction - GameManager.hedgehogs)
+	
+func _on_clock_tick():
 	for hedgehog in hedgehogs:
-		print("GO?")
 		var path = null
 		if hedgehog.onExpedition:
 			path = _get_expedition_path(hedgehog)
@@ -59,5 +61,6 @@ func _on_spawn_hedgehog():
 	var hedgehogScene = load("res://Scenes/Hedgehog/Hedgehog.tscn")
 	var instance = hedgehogScene.instance()
 	add_child_below_node(hedgehogs[0], instance)
+	instance.position = Vector2(640, 89)
 	hedgehogs.append(instance)
 	GameManager.hedgehogs += 1
