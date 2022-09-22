@@ -9,14 +9,14 @@ var expeditionTargetPos: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GameManager.connect("clock_tick", self, "_on_clock_tick")
+	GameManager.connect("game_tick", self, "_on_game_tick")
 	hedgehogs = [$Hedgehog]
 	for room in self.get_children():
 		roomDict[room.name] = room
 		print(roomDict[room.name].visible)
 	expeditionTargetPos = $ExpeditionTarget.position
 
-func _on_clock_tick():
+func _on_game_tick():
 	var tmpFoodProdution = 0
 	for room in self.get_children():
 		if room is Area2D:
@@ -49,6 +49,3 @@ func _on_spawn_hedgehog():
 	add_child(instance)
 	hedgehogs.append(instance)
 	GameManager.hedgehogs += 1
-	pass # Replace with function body.
-
-

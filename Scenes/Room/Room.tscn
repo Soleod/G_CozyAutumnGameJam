@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scenes/default.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/Room/Room.gd" type="Script" id=2]
@@ -20,8 +20,13 @@
 [ext_resource path="res://Art/Shroom Room/Shroom.png" type="Texture" id=18]
 [ext_resource path="res://Art/Slep room/Leaves.png" type="Texture" id=19]
 [ext_resource path="res://Scenes/Dialog.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Art/Shroom Room/AddLeaves_1.png" type="Texture" id=21]
 
-[sub_resource type="Shader" id=3]
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 51, 20.9999 )
+
+[sub_resource type="Shader" id=7]
+resource_local_to_scene = true
 code = "shader_type canvas_item;
 
 uniform float Coldness : hint_range(0.0, 1.0, 0.1);
@@ -39,8 +44,9 @@ void fragment() {
 	}
 }"
 
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 3 )
+[sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
+shader = SubResource( 7 )
 shader_param/Coldness = null
 
 [sub_resource type="NavigationPolygon" id=4]
@@ -58,15 +64,16 @@ vertices = PoolVector2Array( 4, 19, -4, 19, -4, 18, 4, 18 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 outlines = [ PoolVector2Array( 4, 19, -4, 19, -4, 18, 4, 18 ) ]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 51, 20.9999 )
-
 [node name="Room" type="Area2D"]
 position = Vector2( 100, 136 )
 script = ExtResource( 2 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 1 )
+
 [node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 2 )
+material = SubResource( 8 )
 scale = Vector2( 0.999999, 1 )
 texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 102, 42 )
@@ -110,10 +117,13 @@ visible = false
 position = Vector2( 0, 10 )
 texture = ExtResource( 18 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="UpgradeButton" type="TextureButton" parent="."]
 visible = false
-position = Vector2( 4.54747e-12, 0 )
-shape = SubResource( 1 )
+margin_left = 18.0
+margin_top = -18.0
+margin_right = 36.0
+margin_bottom = -6.0
+texture_normal = ExtResource( 21 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -335,6 +345,7 @@ margin_top = 9.0
 margin_right = 90.0
 margin_bottom = 36.0
 
+[connection signal="pressed" from="UpgradeButton" to="." method="_on_UpgradeButton_pressed"]
 [connection signal="gui_input" from="CanvasLayer/OutsidePanel" to="." method="_on_OutsidePanel_gui_input"]
 [connection signal="build_room" from="CanvasLayer/OutsidePanel/BuildingPanel" to="." method="_on_BuildingPanel_build_room"]
 [connection signal="pressed" from="CanvasLayer/OutsidePanel/BuildingPanel/Button_sleep" to="CanvasLayer/OutsidePanel/BuildingPanel" method="_on_Button_sleep_pressed"]
