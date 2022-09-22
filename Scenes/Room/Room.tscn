@@ -135,14 +135,14 @@ margin_right = 235.0
 margin_bottom = 135.0
 texture = ExtResource( 14 )
 
-[node name="Button_food" type="TextureButton" parent="CanvasLayer/OutsidePanel/BuildingPanel"]
+[node name="Button_sleep" type="TextureButton" parent="CanvasLayer/OutsidePanel/BuildingPanel"]
 margin_left = 165.0
 margin_top = 45.0
 margin_right = 217.0
 margin_bottom = 58.0
 texture_normal = ExtResource( 16 )
 
-[node name="Label" type="Label" parent="CanvasLayer/OutsidePanel/BuildingPanel/Button_food"]
+[node name="Label" type="Label" parent="CanvasLayer/OutsidePanel/BuildingPanel/Button_sleep"]
 margin_left = 1.0
 margin_top = -2.0
 margin_right = 51.0
@@ -168,14 +168,14 @@ margin_bottom = 120.0
 texture = ExtResource( 4 )
 stretch_mode = 1
 
-[node name="Button_sleep" type="TextureButton" parent="CanvasLayer/OutsidePanel/BuildingPanel"]
+[node name="Button_food" type="TextureButton" parent="CanvasLayer/OutsidePanel/BuildingPanel"]
 margin_left = 165.0
 margin_top = 104.0
 margin_right = 217.0
 margin_bottom = 117.0
 texture_normal = ExtResource( 17 )
 
-[node name="Label" type="Label" parent="CanvasLayer/OutsidePanel/BuildingPanel/Button_sleep"]
+[node name="Label" type="Label" parent="CanvasLayer/OutsidePanel/BuildingPanel/Button_food"]
 margin_left = 1.0
 margin_top = -2.0
 margin_right = 51.0
@@ -336,8 +336,8 @@ margin_bottom = 36.0
 
 [connection signal="gui_input" from="CanvasLayer/OutsidePanel" to="." method="_on_OutsidePanel_gui_input"]
 [connection signal="build_room" from="CanvasLayer/OutsidePanel/BuildingPanel" to="." method="_on_BuildingPanel_build_room"]
-[connection signal="pressed" from="CanvasLayer/OutsidePanel/BuildingPanel/Button_food" to="CanvasLayer/OutsidePanel/BuildingPanel" method="_on_Button_food_pressed"]
 [connection signal="pressed" from="CanvasLayer/OutsidePanel/BuildingPanel/Button_sleep" to="CanvasLayer/OutsidePanel/BuildingPanel" method="_on_Button_sleep_pressed"]
+[connection signal="pressed" from="CanvasLayer/OutsidePanel/BuildingPanel/Button_food" to="CanvasLayer/OutsidePanel/BuildingPanel" method="_on_Button_food_pressed"]
 [connection signal="pressed" from="CanvasLayer/OutsidePanel/BuildingPanel/Close" to="." method="_on_Close_pressed"]
 
 [editable path="CanvasLayer/NotEnoughRes"]

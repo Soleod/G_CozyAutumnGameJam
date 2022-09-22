@@ -120,7 +120,7 @@ visible = false
 position = Vector2( 119, 231 )
 
 [node name="Hedgehog" parent="World/BuildingGrid" instance=ExtResource( 6 )]
-position = Vector2( 24, 91 )
+position = Vector2( 296, 90 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="World/BuildingGrid/Hedgehog"]
 frames = ExtResource( 38 )
@@ -402,10 +402,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -7.0
-margin_right = 20.0
-margin_bottom = 7.0
+margin_left = -41.0
+margin_top = -22.5
+margin_right = 41.0
+margin_bottom = 22.5
 theme = ExtResource( 21 )
 text = "Game Over
 You ran out of Food!

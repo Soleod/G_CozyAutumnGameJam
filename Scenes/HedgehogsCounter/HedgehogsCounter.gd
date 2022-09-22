@@ -2,9 +2,9 @@ extends Label
 
 
 func _ready():
-	GameManager.connect("game_tick", self, "_on_GameManager_game_tick")
+	GameManager.connect("clock_tick", self, "_on_GameManager_clock_tick")
 	self.text = String(GameManager.hedgehogs)
 
 
-func _on_GameManager_game_tick():
+func _on_GameManager_clock_tick():
 	self.text = String(GameManager.hedgehogs)

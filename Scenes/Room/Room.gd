@@ -99,7 +99,9 @@ func _on_BuildingPanel_build_room(buildingName):
 	GameManager.remove_sticks(room.costSticks)
 	GameManager.remove_leaves(room.costLeaves)
 	lodging = room.hedgehogGain
+	print("GAIN: " + str(lodging))
 	for x in range(lodging):
+		print("DSADSA")
 		emit_signal("spawn_hedgehog")
 	coldness = 0
 	isActive = true

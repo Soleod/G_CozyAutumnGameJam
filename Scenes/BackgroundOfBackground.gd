@@ -17,7 +17,6 @@ func _process(delta):
 		hourBonus += delta * (1.0 / GameManager.tick_rate)
 		if hourBonus >= 8.0:
 			hourBonus -= 8.0
-		print(hourBonus)
 		backgroundShader.set("shader_param/Hour", hourBonus)
 		#print(backgroundShader.get("shader_param/Hour"))
 

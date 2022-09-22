@@ -32,6 +32,11 @@ func _on_clock_tick():
 
 
 func _on_spawn_hedgehog():
+	var hedgehogScene = load("res://Scenes/Hedgehog/Hedgehog.tscn")
+	var instance = hedgehogScene.instance()
+	add_child(instance)
+	hedgehogs.append(instance)
+	GameManager.hedgehogs += 1
 	pass # Replace with function body.
 
 
