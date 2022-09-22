@@ -91,6 +91,10 @@ func add_leaves(amount):
 	leaves += amount
 	emit_signal("inventory_changed")
 
+func remove_leaves(amount):
+	leaves -= amount
+	emit_signal("inventory_changed")
+
 func add_food(amount):
 	food += amount
 	emit_signal("inventory_changed")
@@ -102,3 +106,4 @@ func add_sticks(amount):
 func remove_sticks(amount):
 	sticks -= amount
 	emit_signal("inventory_changed")
+	

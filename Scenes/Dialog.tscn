@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/default.tres" type="Theme" id=1]
+[ext_resource path="res://Art/UI/Basic Dialog/Ok.png" type="Texture" id=2]
+[ext_resource path="res://Art/UI/Basic Dialog/Dialog.png" type="Texture" id=3]
+[ext_resource path="res://Art/UI/Basic Dialog/Close.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Dialog.gd" type="Script" id=5]
+
+[node name="Dialog" type="Panel"]
+margin_left = 222.0
+margin_top = 168.0
+margin_right = 322.0
+margin_bottom = 222.0
+script = ExtResource( 5 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 3 )
+
+[node name="Ok" type="TextureButton" parent="."]
+margin_left = 37.0
+margin_top = 37.0
+margin_right = 59.0
+margin_bottom = 48.0
+texture_normal = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="Ok"]
+margin_left = 4.0
+margin_top = -3.0
+margin_right = 18.0
+margin_bottom = 10.0
+theme = ExtResource( 1 )
+text = "Ok"
+align = 1
+
+[node name="Close" type="TextureButton" parent="."]
+margin_left = 91.0
+margin_top = 2.0
+margin_right = 98.0
+margin_bottom = 9.0
+texture_normal = ExtResource( 4 )
+
+[node name="DialogText" type="Label" parent="."]
+margin_left = 9.0
+margin_top = 7.0
+margin_right = 85.0
+margin_bottom = 34.0
+theme = ExtResource( 1 )
+text = "Lorem ipsum"
+
+[connection signal="pressed" from="Ok" to="." method="_on_Ok_pressed"]
+[connection signal="pressed" from="Close" to="." method="_on_Close_pressed"]

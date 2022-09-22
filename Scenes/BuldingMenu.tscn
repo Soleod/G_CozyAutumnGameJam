@@ -1,0 +1,125 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Art/A_ShroomRoom.png" type="Texture" id=1]
+[ext_resource path="res://Art/A_EmptyRoom.png" type="Texture" id=2]
+[ext_resource path="res://Art/A_GreenRoom.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Building/Building.gd" type="Script" id=4]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="OutsidePanel" type="Panel" parent="."]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.352941 )
+margin_right = 640.0
+margin_bottom = 360.0
+
+[node name="BuildingPanel" type="Panel" parent="OutsidePanel"]
+margin_left = 100.0
+margin_top = 136.0
+margin_right = 539.0
+margin_bottom = 304.0
+
+[node name="ColorRect" type="ColorRect" parent="OutsidePanel/BuildingPanel"]
+margin_right = 439.0
+margin_bottom = 168.0
+color = Color( 0.568627, 0.439216, 0.192157, 1 )
+
+[node name="BuildingEmpty" type="Panel" parent="OutsidePanel/BuildingPanel"]
+margin_left = 44.0
+margin_top = 16.0
+margin_right = 140.0
+margin_bottom = 152.0
+script = ExtResource( 4 )
+
+[node name="TextureRect" type="TextureRect" parent="OutsidePanel/BuildingPanel/BuildingEmpty"]
+margin_left = 8.0
+margin_top = 40.0
+margin_right = 110.0
+margin_bottom = 82.0
+rect_scale = Vector2( 0.782, 0.973 )
+texture = ExtResource( 2 )
+stretch_mode = 1
+
+[node name="Button" type="Button" parent="OutsidePanel/BuildingPanel/BuildingEmpty"]
+margin_left = 8.0
+margin_top = 104.0
+margin_right = 88.0
+margin_bottom = 124.0
+text = "Build"
+
+[node name="Label" type="Label" parent="OutsidePanel/BuildingPanel/BuildingEmpty"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 88.0
+margin_bottom = 30.0
+text = "Empty Room"
+align = 1
+valign = 1
+
+[node name="BuildingFood" type="Panel" parent="OutsidePanel/BuildingPanel"]
+margin_left = 172.0
+margin_top = 16.0
+margin_right = 268.0
+margin_bottom = 152.0
+script = ExtResource( 4 )
+
+[node name="TextureRect" type="TextureRect" parent="OutsidePanel/BuildingPanel/BuildingFood"]
+margin_left = 8.0
+margin_top = 40.0
+margin_right = 110.0
+margin_bottom = 82.0
+rect_scale = Vector2( 0.782, 0.973 )
+texture = ExtResource( 1 )
+stretch_mode = 1
+
+[node name="Button" type="Button" parent="OutsidePanel/BuildingPanel/BuildingFood"]
+margin_left = 8.0
+margin_top = 104.0
+margin_right = 88.0
+margin_bottom = 124.0
+text = "Build"
+
+[node name="Label" type="Label" parent="OutsidePanel/BuildingPanel/BuildingFood"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 88.0
+margin_bottom = 30.0
+text = "Blue Room"
+align = 1
+valign = 1
+
+[node name="BuildingSleep" type="Panel" parent="OutsidePanel/BuildingPanel"]
+margin_left = 300.0
+margin_top = 16.0
+margin_right = 396.0
+margin_bottom = 152.0
+script = ExtResource( 4 )
+
+[node name="TextureRect" type="TextureRect" parent="OutsidePanel/BuildingPanel/BuildingSleep"]
+margin_left = 8.0
+margin_top = 40.0
+margin_right = 110.0
+margin_bottom = 82.0
+rect_scale = Vector2( 0.782, 0.973 )
+texture = ExtResource( 3 )
+stretch_mode = 1
+
+[node name="Button" type="Button" parent="OutsidePanel/BuildingPanel/BuildingSleep"]
+margin_left = 8.0
+margin_top = 104.0
+margin_right = 88.0
+margin_bottom = 124.0
+text = "Build"
+
+[node name="Label" type="Label" parent="OutsidePanel/BuildingPanel/BuildingSleep"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 88.0
+margin_bottom = 30.0
+text = "Green Room"
+align = 1
+valign = 1
+
+[connection signal="pressed" from="OutsidePanel/BuildingPanel/BuildingEmpty/Button" to="OutsidePanel/BuildingPanel/BuildingEmpty" method="_on_Button_pressed"]
+[connection signal="pressed" from="OutsidePanel/BuildingPanel/BuildingFood/Button" to="OutsidePanel/BuildingPanel/BuildingFood" method="_on_Button_pressed"]
+[connection signal="pressed" from="OutsidePanel/BuildingPanel/BuildingSleep/Button" to="OutsidePanel/BuildingPanel/BuildingSleep" method="_on_Button_pressed"]

@@ -37,15 +37,16 @@
 [ext_resource path="res://Art/UI/Thermometer/Thermometer.png" type="Texture" id=39]
 
 [sub_resource type="NavigationPolygon" id=7]
-vertices = PoolVector2Array( -32, -31, -32, -32, -3, -32, -3, -31, -3, -93, -386, -93, -386, -94, 214, -94, 214, -93, -1, -93, -1, 71, -3, 19, -31, 71, -31, 70, -3, 70, -3, 20, -31, 20, -31, 19 )
+vertices = PoolVector2Array( -32, -31, -32, -32, -3, -32, -3, -31, -3, -93, -386, -93, -386, -94, 214, -94, 214, -93, -1, -93, -1, 71, -3, 19, -32, 71, -32, 70, -3, 70, -3, 20, -32, 20, -32, 19 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 7 ), PoolIntArray( 7, 8, 9 ), PoolIntArray( 4, 7, 9 ), PoolIntArray( 2, 4, 9, 10 ), PoolIntArray( 3, 2, 10 ), PoolIntArray( 11, 3, 10 ), PoolIntArray( 10, 12, 13, 14 ), PoolIntArray( 15, 16, 17, 11 ), PoolIntArray( 15, 11, 10 ), PoolIntArray( 15, 10, 14 ) ]
-outlines = [ PoolVector2Array( -32, -32, -3, -32, -3, -93, -386, -93, -386, -94, 214, -94, 214, -93, -1, -93, -1, 71, -31, 71, -31, 70, -3, 70, -3, 20, -31, 20, -31, 19, -3, 19, -3, -31, -32, -31 ) ]
+outlines = [ PoolVector2Array( -32, -32, -3, -32, -3, -93, -386, -93, -386, -94, 214, -94, 214, -93, -1, -93, -1, 71, -32, 71, -32, 70, -3, 70, -3, 20, -32, 20, -32, 19, -3, 19, -3, -31, -32, -31 ) ]
 
 [node name="Game" type="Node"]
 
 [node name="World" type="Node2D" parent="."]
 
 [node name="Background" type="Sprite" parent="World"]
+visible = false
 position = Vector2( 320, 180 )
 texture = ExtResource( 1 )
 
@@ -53,31 +54,37 @@ texture = ExtResource( 1 )
 script = ExtResource( 4 )
 
 [node name="Room_1" parent="World/BuildingGrid" instance=ExtResource( 7 )]
-position = Vector2( 326, 130 )
+position = Vector2( 327, 129 )
 
 [node name="Room_2" parent="World/BuildingGrid" instance=ExtResource( 7 )]
-position = Vector2( 222, 130 )
+visible = false
+position = Vector2( 223, 129 )
 
 [node name="Room_3" parent="World/BuildingGrid" instance=ExtResource( 7 )]
-position = Vector2( 118, 130 )
+visible = false
+position = Vector2( 119, 129 )
 
 [node name="Room_4" parent="World/BuildingGrid" instance=ExtResource( 7 )]
-position = Vector2( 326, 181 )
+position = Vector2( 327, 180 )
 
 [node name="Room_5" parent="World/BuildingGrid" instance=ExtResource( 7 )]
-position = Vector2( 222, 181 )
+visible = false
+position = Vector2( 223, 180 )
 
 [node name="Room_6" parent="World/BuildingGrid" instance=ExtResource( 7 )]
-position = Vector2( 118, 181 )
+visible = false
+position = Vector2( 119, 180 )
 
 [node name="Room_7" parent="World/BuildingGrid" instance=ExtResource( 7 )]
-position = Vector2( 326, 232 )
+position = Vector2( 327, 231 )
 
 [node name="Room_8" parent="World/BuildingGrid" instance=ExtResource( 7 )]
-position = Vector2( 222, 232 )
+visible = false
+position = Vector2( 223, 231 )
 
 [node name="Room_9" parent="World/BuildingGrid" instance=ExtResource( 7 )]
-position = Vector2( 118, 232 )
+visible = false
+position = Vector2( 119, 231 )
 
 [node name="Hedgehog" parent="World/BuildingGrid" instance=ExtResource( 6 )]
 position = Vector2( 316, 91 )
@@ -87,28 +94,28 @@ frames = ExtResource( 38 )
 playing = true
 
 [node name="Line2D" type="Line2D" parent="World/BuildingGrid"]
-visible = false
+
+[node name="Sprite" type="Sprite" parent="World/BuildingGrid"]
+position = Vector2( 382, 138 )
+scale = Vector2( 1, 0.967742 )
+texture = ExtResource( 36 )
+
+[node name="Sprite2" type="Sprite" parent="World/BuildingGrid"]
+position = Vector2( 382, 189 )
+scale = Vector2( 1, 0.967742 )
+texture = ExtResource( 36 )
+
+[node name="Sprite3" type="Sprite" parent="World/BuildingGrid"]
+position = Vector2( 382, 240 )
+scale = Vector2( 1, 0.967742 )
+texture = ExtResource( 36 )
 
 [node name="Shaft" type="Sprite" parent="World/BuildingGrid"]
 position = Vector2( 410, 184 )
 texture = ExtResource( 37 )
 
-[node name="Sprite" type="Sprite" parent="World/BuildingGrid/Shaft"]
-position = Vector2( -31, -45 )
-scale = Vector2( 1, 0.967742 )
-texture = ExtResource( 36 )
-
-[node name="Sprite2" type="Sprite" parent="World/BuildingGrid/Shaft"]
-position = Vector2( -32, 6 )
-scale = Vector2( 1, 0.967742 )
-texture = ExtResource( 36 )
-
-[node name="Sprite3" type="Sprite" parent="World/BuildingGrid/Shaft"]
-position = Vector2( -32, 57 )
-scale = Vector2( 1, 0.967742 )
-texture = ExtResource( 36 )
-
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="World/BuildingGrid/Shaft"]
+position = Vector2( 1, -1 )
 navpoly = SubResource( 7 )
 
 [node name="UI" type="Node" parent="."]

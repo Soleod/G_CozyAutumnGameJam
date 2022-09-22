@@ -6,6 +6,7 @@ var roomSprite: Sprite
 var progressBar: ProgressBar
 var heatPanel: Panel
 var roomShader: Material
+var notEnoughResDialog: Panel
 
 var foodProduction: int = 0
 var cost: int = 0
@@ -21,7 +22,7 @@ func _ready():
 	outsidePanel = $CanvasLayer/OutsidePanel
 	roomSprite = $Sprite
 	roomShader = roomSprite.material
-	
+	notEnoughResDialog = $CanvasLayer/NotEnoughRes
 	
 	GameManager.connect("game_tick", self, "_on_GameManager_game_tick")
 
@@ -30,6 +31,14 @@ func _input_event(viewport, event, shape_idx):
 	and event.button_index == BUTTON_LEFT \
 	and event.pressed:
 		self.on_click()
+
+func _input(event):
+	if Input.is_key_pressed(KEY_ESCAPE) \
+	and buildingPanel.visible:
+		buildingPanel.hide()
+		outsidePanel.hide()
+		GameManager.ChangeGameState(GameManager.GameState.RUNNING)
+		
 
 func on_click():
 	print("Click")
@@ -55,11 +64,49 @@ func _on_OutsidePanel_gui_input(event):
 			outsidePanel.hide()
 			GameManager.ChangeGameState(GameManager.GameState.RUNNING)
 
-func BuildRoom(buildingTexture: StreamTexture):
-	roomSprite.texture = buildingTexture
+func getRoomProperties(buildingName):
+	match buildingName:
+		"MushroomRoom":
+			return {
+				"costSticks": 4,
+				"costLeaves": 2,
+				"hedgehogGain": 0,
+				"dailyFood": 1,
+				"roomTexture": $Sprite/SpriteShrooms
+			}
+		"SleepingRoom":
+			return {
+				"costSticks": 5,
+				"costLeaves": 1,
+				"hedgehogGain": 1,
+				"dailyFood": 0,
+				"roomTexture": $Sprite/SpriteSleep
+			}
+
+func _on_BuildingPanel_build_room(buildingName):
+	
+	var room = getRoomProperties(buildingName)
+	
+	if GameManager.sticks < room.costSticks:
+		notEnoughResDialog.show()
+		return
+	
+	if GameManager.leaves < room.costLeaves:
+		notEnoughResDialog.show()
+		return
+	
+	GameManager.remove_sticks(room.costSticks)
+	GameManager.remove_sticks(room.costLeaves)
+	lodging = room.hedgehogGain
+	coldness = 0
+	isActive = true
+	foodProduction = room.dailyFood
+	coldProtectionLevel = GameManager.TemperatureState.FROSTPUNK
+	
 	buildingPanel.hide()
 	outsidePanel.hide()
-
+	room.roomTexture.show()
+	
 	GameManager.ChangeGameState(GameManager.GameState.RUNNING)
 	var currentRoomIndex = self.name.get_slice("_", 1)
 	var nextRoomIndex = int(currentRoomIndex) + 1
@@ -68,45 +115,6 @@ func BuildRoom(buildingTexture: StreamTexture):
 		$Sprite/SpriteLC.hide()
 		$Sprite/SpriteLO/NavigationPolygonInstance.enabled = true
 	emit_signal("enable_next_room", self.name.get_slice("_", 0) + "_" + String(nextRoomIndex))
-
-func _on_BuildingEmpty_build_room(buildingName, buildingTexture):
-	var tmpCost = 0
-	if (GameManager.sticks >= tmpCost):
-		GameManager.remove_sticks(tmpCost)
-		foodProduction = 0
-		cost = tmpCost
-		lodging = 0
-		coldness = 0
-		isActive = true
-		coldProtectionLevel = GameManager.TemperatureState.FROSTPUNK
-		BuildRoom(buildingTexture)
-
-
-func _on_BuildingFood_build_room(buildingName, buildingTexture):
-	var tmpCost = 10
-	if (GameManager.sticks >= tmpCost):
-		GameManager.remove_sticks(tmpCost)
-		foodProduction = 1
-		cost = tmpCost
-		lodging = 0
-		coldness = 0
-		isActive = true
-		coldProtectionLevel = GameManager.TemperatureState.WARM
-		BuildRoom(buildingTexture)
-
-
-func _on_BuildingSleep_build_room(buildingName, buildingTexture):
-	var tmpCost = 10
-	if (GameManager.sticks >= tmpCost):
-		GameManager.remove_sticks(tmpCost)
-		foodProduction = 0
-		cost = tmpCost
-		lodging = 5
-		coldness = 0
-		isActive = true
-		coldProtectionLevel = GameManager.TemperatureState.WARM
-		BuildRoom(buildingTexture)
-
 
 
 func _on_Room_1_enable_next_room(roomName):
@@ -137,3 +145,9 @@ func _on_Room_7_enable_next_room(roomName):
 func _on_Room_8_enable_next_room(roomName):
 	if (self.name == roomName):
 		self.visible = true
+
+
+func _on_Close_pressed():
+	buildingPanel.hide()
+	outsidePanel.hide()
+	GameManager.ChangeGameState(GameManager.GameState.RUNNING)
