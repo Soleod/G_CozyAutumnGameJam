@@ -4,19 +4,24 @@ extends Control
 var currentExpedition = null
 var expeditionProgressScene
 var expeditionButton: Node
+var buildingGrid: Node
+var hedgehog: Node
 
 func _ready():
 	expeditionProgressScene = load("res://Scenes/ExpeditionProgress/ExpeditionProgress.tscn")
 	expeditionButton = $ExpeditionButton
-
+	buildingGrid = get_node("/root/Game/World/BuildingGrid")
 
 func _on_expedition_started():
+	hedgehog = buildingGrid.hedgehogs[randi() % buildingGrid.hedgehogs.size()]
+	hedgehog.onExpedition = true
 	expeditionButton.hide()
 	currentExpedition = expeditionProgressScene.instance()
 	add_child(currentExpedition)
 	currentExpedition.connect("expedition_finished", self, "_on_expedition_finished")
 
 func _on_expedition_finished():
+	hedgehog.onExpedition = false
 	expeditionButton.show()
 	match(randi() % 3):
 		0:

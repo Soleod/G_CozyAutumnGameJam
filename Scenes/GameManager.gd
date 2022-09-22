@@ -20,9 +20,9 @@ var currentGameState: int
 var gameTickTimer: Timer
 var PauseButton: TextureButton
 
-var food: int = 10
-var sticks: int = 5
-var leaves: int = 3
+var food: int = 1000
+var sticks: int = 500
+var leaves: int = 300
 var hedgehogs: int = 1
 
 var hour: int = 2
@@ -31,7 +31,7 @@ var day: int = 0
 var currentTemp: int = 31
 var currentTempState: int = TemperatureState.WARM
 
-var tick_rate: float = 1.5
+var tick_rate: float = 0.1
 
 signal game_tick
 signal clock_tick
@@ -70,7 +70,7 @@ func ChangeGameState(newGameState):
 
 func _on_Timer_timeout():
 	if currentGameState == GameState.RUNNING:
-		if(day == 5):
+		if(day == 96):
 			emit_signal("win")
 		if(hour == 0):
 			hour += 1
