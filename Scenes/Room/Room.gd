@@ -108,31 +108,32 @@ func _on_BuildingSleep_build_room(buildingName, buildingTexture):
 		BuildRoom(buildingTexture)
 
 
-func _on_Room1_enable_next_room(roomName):
+
+func _on_Room_1_enable_next_room(roomName):
 	if (self.name == roomName):
 		self.visible = true
 
 
-func _on_Room2_enable_next_room(roomName):
+func _on_Room_2_enable_next_room(roomName):
 	if (self.name == roomName):
 		self.visible = true
 
 
-func _on_Room4_enable_next_room(roomName):
-	if (self.name == roomName):
-		self.visible = true
-
-
-func _on_Room7_enable_next_room(roomName):
-	if (self.name == roomName):
-		self.visible = true
-
-
-func _on_Room8_enable_next_room(roomName):
+func _on_Room_4_enable_next_room(roomName):
 	if (self.name == roomName):
 		self.visible = true
 
 
 func _on_Room_5_enable_next_room(roomName):
+	if (self.name == roomName):
+		self.visible = true
+
+
+func _on_Room_7_enable_next_room(roomName):
+	if (self.name == roomName):
+		self.visible = true
+
+
+func _on_Room_8_enable_next_room(roomName):
 	if (self.name == roomName):
 		self.visible = true
