@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Art/MAIN_IMAGE.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/PauseLabel/PauseLabel.tscn" type="PackedScene" id=2]
@@ -11,7 +11,7 @@
 [ext_resource path="res://Art/UI/Pause/Pause.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/PausePlayButton/PausePlayButton.gd" type="Script" id=10]
 [ext_resource path="res://Art/A_GreenRoom.png" type="Texture" id=11]
-[ext_resource path="res://Art/A_PopUpButton.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/heading.tres" type="Theme" id=12]
 [ext_resource path="res://Scenes/ExpeditionButton/ExpeditionButton.gd" type="Script" id=13]
 [ext_resource path="res://Scenes/FoodCounter/FoodCounter.gd" type="Script" id=14]
 [ext_resource path="res://Scenes/HedgehogsCounter/HedgehogsCounter.gd" type="Script" id=15]
@@ -32,6 +32,9 @@
 [ext_resource path="res://Scenes/Room/Room.gd" type="Script" id=30]
 [ext_resource path="res://Art/UI/Hedgehogs Panel/Hedgehog Icon.png" type="Texture" id=31]
 [ext_resource path="res://Art/UI/Hedgehogs Panel/Hedgehogs.png" type="Texture" id=32]
+[ext_resource path="res://Art/UI/Dialog Confirm/Dialog.png" type="Texture" id=33]
+[ext_resource path="res://Art/UI/Dialog Confirm/Yes.png" type="Texture" id=34]
+[ext_resource path="res://Art/UI/Dialog Confirm/No.png" type="Texture" id=35]
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -1648,46 +1651,68 @@ self_modulate = Color( 1, 1, 1, 0 )
 margin_right = 640.0
 margin_bottom = 360.0
 
-[node name="InsidePanel" type="Panel" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel"]
-margin_left = 216.0
-margin_top = 160.0
-margin_right = 432.0
-margin_bottom = 240.0
+[node name="InsidePanel" type="TextureRect" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel"]
+margin_left = 223.0
+margin_top = 121.0
+margin_right = 417.0
+margin_bottom = 215.0
+texture = ExtResource( 33 )
 
 [node name="Label" type="Label" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel"]
-margin_left = 19.0
-margin_top = 17.0
-margin_right = 192.0
-margin_bottom = 31.0
-text = "Send Hedge on Expedition?"
+margin_left = 2.0
+margin_top = 7.0
+margin_right = 190.0
+margin_bottom = 23.0
+theme = ExtResource( 12 )
+custom_colors/font_color = Color( 0.34902, 0.243137, 0.286275, 1 )
+text = "Expedition!"
+align = 1
+valign = 1
 
 [node name="TextureButton" type="TextureButton" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel"]
-margin_left = 32.0
-margin_top = 40.0
-margin_right = 80.0
-margin_bottom = 64.0
-texture_normal = ExtResource( 12 )
+margin_left = 25.0
+margin_top = 69.0
+margin_right = 69.0
+margin_bottom = 84.0
+texture_normal = ExtResource( 34 )
 
 [node name="Label" type="Label" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel/TextureButton"]
-margin_right = 48.0
-margin_bottom = 24.0
+margin_left = 1.0
+margin_right = 42.0
+margin_bottom = 13.0
+theme = ExtResource( 12 )
+custom_colors/font_color = Color( 0.34902, 0.243137, 0.286275, 1 )
 text = "Yes"
 align = 1
 valign = 1
 
 [node name="TextureButton2" type="TextureButton" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel"]
-margin_left = 128.0
-margin_top = 40.0
-margin_right = 176.0
-margin_bottom = 64.0
-texture_normal = ExtResource( 12 )
+margin_left = 125.0
+margin_top = 69.0
+margin_right = 169.0
+margin_bottom = 84.0
+texture_normal = ExtResource( 35 )
 
 [node name="Label" type="Label" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel/TextureButton2"]
-margin_right = 48.0
-margin_bottom = 24.0
+margin_left = 1.0
+margin_right = 42.0
+margin_bottom = 13.0
+theme = ExtResource( 12 )
+custom_colors/font_color = Color( 0.34902, 0.243137, 0.286275, 1 )
 text = "No"
 align = 1
 valign = 1
+
+[node name="Label2" type="Label" parent="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel/InsidePanel"]
+margin_left = 9.0
+margin_top = 38.0
+margin_right = 198.0
+margin_bottom = 52.0
+rect_scale = Vector2( 0.8, 0.8 )
+theme = ExtResource( 12 )
+custom_colors/font_color = Color( 0.34902, 0.243137, 0.286275, 1 )
+text = "Send hedgehogs on an expedition?"
+align = 1
 
 [node name="TextureRect" type="TextureRect" parent="UI/Expeditions/ExpeditionButton"]
 margin_left = 4.0

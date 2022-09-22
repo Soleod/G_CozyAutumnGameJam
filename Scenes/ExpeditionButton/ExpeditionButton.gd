@@ -6,7 +6,7 @@ extends TextureButton
 # var b = "text"
 
 var outsidePanel: Panel
-var insidePanel: Panel
+var insidePanel: TextureRect
 signal expedition_started
 
 # Called when the node enters the scene tree for the first time.
