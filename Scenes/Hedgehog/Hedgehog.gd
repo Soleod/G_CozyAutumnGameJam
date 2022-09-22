@@ -13,7 +13,7 @@ func _process(delta):
 	# Calculate the movement distance for this frame
 	var distance_to_walk = speed * delta
 	# Move the player along the path until he has run out of movement or the path ends.
-	while distance_to_walk > 0 and path.size() > 0:
+	while distance_to_walk > 0 and path.size() > 0 and GameManager.currentGameState == GameManager.GameState.RUNNING:
 		var distance_to_next_point = position.distance_to(path[0])
 		var hedgehogDirectionValue = position.x - path[0].x
 		if (hedgehogDirectionValue < 0):
