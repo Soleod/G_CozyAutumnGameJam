@@ -62,7 +62,7 @@ func _process(delta):
 		for hedgehog in hedgehogs:
 			if(hedgehog.material != null):
 				hedgehog.material.set("shader_param/Hour", hourForShader)
-			if hedgehog.position.y <= 90:
+			if hedgehog.position.y <= 100:
 				if(hedgehog.material == null):
 					print("setting")
 					hedgehog.material = nightMaterial
