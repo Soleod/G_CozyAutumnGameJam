@@ -7,7 +7,6 @@ extends TextureButton
 
 var outsidePanel: Panel
 var insidePanel: TextureRect
-signal expedition_started
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,7 +15,6 @@ func _ready():
 
 
 func _pressed():
-	emit_signal("expedition_started")
 	match GameManager.currentGameState:
 		GameManager.GameState.RUNNING:
 			GameManager.ChangeGameState(GameManager.GameState.EXPEDITION)
@@ -31,6 +29,11 @@ func _on_OutsidePanel_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			print("Outside Exp")
-			insidePanel.hide()
-			outsidePanel.hide()
-			GameManager.ChangeGameState(GameManager.GameState.RUNNING)
+			close_expedition_dialog()
+
+
+func close_expedition_dialog():
+	pass # Replace with function body.
+	insidePanel.hide()
+	outsidePanel.hide()
+	GameManager.ChangeGameState(GameManager.GameState.RUNNING)
