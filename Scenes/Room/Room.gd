@@ -1,5 +1,7 @@
 extends Area2D
 
+# Lose all hope ye who enter here
+
 var buildingPanel: Panel
 var outsidePanel: Panel
 var roomSprite: Sprite
