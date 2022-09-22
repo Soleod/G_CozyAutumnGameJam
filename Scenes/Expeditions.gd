@@ -14,14 +14,14 @@ func _ready():
 
 func _on_expedition_started():
 	hedgehog = buildingGrid.hedgehogs[randi() % buildingGrid.hedgehogs.size()]
-	hedgehog.onExpedition = true
+	hedgehog.start_expedition()
 	expeditionButton.hide()
 	currentExpedition = expeditionProgressScene.instance()
 	add_child(currentExpedition)
 	currentExpedition.connect("expedition_finished", self, "_on_expedition_finished")
 
 func _on_expedition_finished():
-	hedgehog.onExpedition = false
+	hedgehog.finish_expedition()
 	expeditionButton.show()
 	match(randi() % 3):
 		0:

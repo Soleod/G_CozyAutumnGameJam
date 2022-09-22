@@ -5,6 +5,8 @@ var animationSprite: Sprite
 var animationPlayer: AnimationPlayer
 var path: PoolVector2Array
 var onExpedition: bool = false
+var normalSpriteSheet
+var expeditionSpriteSheet
 
 var speed: int = 50
 
@@ -13,6 +15,8 @@ func _ready():
 	animationPlayer = $HedgehogSpriteAnimated/AnimationPlayer
 	animationSprite = $HedgehogSpriteAnimated
 	path = PoolVector2Array()
+	normalSpriteSheet = load("res://Art/Hedgehog_animated.png")
+	expeditionSpriteSheet = load("res://Art/Hedgehog_animated_backpack.png")
 
 func _process(delta):
 	if GameManager.currentGameState == GameManager.GameState.RUNNING:
@@ -55,3 +59,11 @@ func _walk(delta: float):
 			path.remove(0)
 		# Update the distance to walk
 		distance_to_walk -= distance_to_next_point
+
+func start_expedition():
+	onExpedition = true
+	$HedgehogSpriteAnimated.texture = expeditionSpriteSheet
+
+func finish_expedition():
+	onExpedition = false
+	$HedgehogSpriteAnimated.texture = normalSpriteSheet

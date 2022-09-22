@@ -74,9 +74,9 @@ shader = SubResource( 8 )
 shader_param/Hour = 0
 
 [sub_resource type="NavigationPolygon" id=7]
-vertices = PoolVector2Array( -32, -31, -32, -32, -3, -32, -3, -31, -3, -93, -386, -93, -386, -94, 273, -94, 273, -93, -1, -93, -1, 71, -3, 19, -32, 71, -32, 70, -3, 70, -3, 20, -32, 20, -32, 19 )
+vertices = PoolVector2Array( -32, -31, -32, -32, -3, -32, -3, -31, -3, -92, -386, -92, -386, -93, 273, -93, 273, -92, -1, -92, -1, 71, -3, 19, -32, 71, -32, 70, -3, 70, -3, 20, -32, 20, -32, 19 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 7 ), PoolIntArray( 7, 8, 9 ), PoolIntArray( 4, 7, 9 ), PoolIntArray( 2, 4, 9, 10 ), PoolIntArray( 3, 2, 10 ), PoolIntArray( 11, 3, 10 ), PoolIntArray( 10, 12, 13, 14 ), PoolIntArray( 15, 16, 17, 11 ), PoolIntArray( 15, 11, 10 ), PoolIntArray( 15, 10, 14 ) ]
-outlines = [ PoolVector2Array( -32, -32, -3, -32, -3, -93, -386, -93, -386, -94, 273, -94, 273, -93, -1, -93, -1, 71, -32, 71, -32, 70, -3, 70, -3, 20, -32, 20, -32, 19, -3, 19, -3, -31, -32, -31 ) ]
+outlines = [ PoolVector2Array( -32, -32, -3, -32, -3, -92, -386, -92, -386, -93, 273, -93, 273, -92, -1, -92, -1, 71, -32, 71, -32, 70, -3, 70, -3, 20, -32, 20, -32, 19, -3, 19, -3, -31, -32, -31 ) ]
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 302, 0.75 )
@@ -162,7 +162,7 @@ visible = false
 position = Vector2( 119, 231 )
 
 [node name="Hedgehog" parent="World/BuildingGrid" instance=ExtResource( 6 )]
-position = Vector2( 329, 90 )
+position = Vector2( 329, 91 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="World/BuildingGrid/Hedgehog"]
 frames = ExtResource( 38 )

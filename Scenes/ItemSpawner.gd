@@ -27,6 +27,8 @@ func _ready():
 	]
 
 func _on_tick():
+	if get_child_count() >=5:
+		return
 	if randi() % 100 < spawnChancePercentage:
 		_spawn_item()	
 
