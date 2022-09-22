@@ -1,6 +1,6 @@
 extends Area2D
 
-var spawnChancePercentage = 10
+var spawnChancePercentage = 20
 var itemResources: Array
 var startArea: Vector2
 var endArea: Vector2
@@ -29,8 +29,9 @@ func _on_tick():
 func _spawn_item():
 	var itemToSpawn = itemResources[randi() % itemResources.size()]
 	var spawnedItem = itemToSpawn.resource.instance()
-	var spawnPosition = Vector2(rand_range(startArea.x, endArea. x), rand_range(startArea.y, endArea.y))
+	var spawnPosition = Vector2(rand_range(startArea.x, endArea.x * 2), rand_range(startArea.y, endArea.y))
 	spawnedItem.position = spawnPosition
+	spawnedItem.type = itemToSpawn.type
 	add_child(spawnedItem)
 	print("spawned " + itemToSpawn.type + " at " + spawnPosition.x as String + " " + spawnPosition.y as String)
 
