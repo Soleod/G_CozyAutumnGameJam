@@ -4,7 +4,8 @@ enum GameState {
 	RUNNING,
 	PAUSED,
 	BUILDING,
-	EXPEDITION
+	EXPEDITION,
+	GAMEOVER
 }
 
 enum TemperatureState {
@@ -18,27 +19,32 @@ var currentGameState: int
 var gameTickTimer: Timer
 var PauseButton: TextureButton
 
-var food: int = 0
+var food: int = 10
 var sticks: int = 100
 var leaves: int = 0
 var hedgehogs: int = 1
 
-var hour: int = 0
+var hour: int = 2
+var sec: int = 0
 var day: int = 0
 var currentTemp: int = 31
 var currentTempState: int = TemperatureState.WARM
 
+var tick_rate: float = 1.5
+
 signal game_tick
 signal clock_tick
+signal sec_clock_tick
 signal state_change(currentGameState)
 signal inventory_changed
+signal game_over
 
 func _ready():
 	currentGameState = GameState.RUNNING
 	gameTickTimer = Timer.new()
 	add_child(gameTickTimer)
 	gameTickTimer.connect("timeout", self, "_on_Timer_timeout")
-	gameTickTimer.set_wait_time(0.1)
+	gameTickTimer.set_wait_time(tick_rate)
 	gameTickTimer.set_one_shot(false)
 	gameTickTimer.start()
 
@@ -85,6 +91,8 @@ func _on_Timer_timeout():
 					currentTempState = TemperatureState.FROSTPUNK
 				print("Day: ", day, " Temp: ", currentTemp, " Temp State: ", currentTempState)
 			emit_signal("clock_tick")
+			if (food < 0):
+				emit_signal("game_over")
 
 
 func add_leaves(amount):
