@@ -48,6 +48,7 @@ func _get_normal_path(hedgehog):
 func _on_spawn_hedgehog():
 	var hedgehogScene = load("res://Scenes/Hedgehog/Hedgehog.tscn")
 	var instance = hedgehogScene.instance()
-	add_child_below_node(instance, hedgehogs[0])
+	add_child_below_node(hedgehogs[0], instance)
+	instance.position = Vector2(640, 89)
 	hedgehogs.append(instance)
 	GameManager.hedgehogs += 1

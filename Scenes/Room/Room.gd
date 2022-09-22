@@ -60,9 +60,10 @@ func _input(event):
 
 func on_click():
 	print("Click")
-	buildingPanel.show()
-	outsidePanel.show()
-	GameManager.ChangeGameState(GameManager.GameState.BUILDING)
+	if(roomType == "Empty"):
+		buildingPanel.show()
+		outsidePanel.show()
+		GameManager.ChangeGameState(GameManager.GameState.BUILDING)
 
 func _on_GameManager_game_tick():
 	if(coldProtectionLevel < GameManager.currentTempState):
@@ -137,6 +138,7 @@ func _on_BuildingPanel_build_room(buildingName):
 	buildingPanel.hide()
 	outsidePanel.hide()
 	upgradeButton.show()
+	$Sprite/Build.hide()
 	room.roomTexture.show()
 	
 	GameManager.ChangeGameState(GameManager.GameState.RUNNING)

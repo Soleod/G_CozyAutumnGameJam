@@ -90,6 +90,7 @@ script = ExtResource( 4 )
 
 [node name="Ground" type="Sprite" parent="World/BuildingGrid"]
 position = Vector2( 0, 59 )
+z_index = -2
 texture = ExtResource( 40 )
 centered = false
 
@@ -105,6 +106,7 @@ centered = false
 
 [node name="Roots" type="Sprite" parent="World/BuildingGrid"]
 position = Vector2( 408, 207 )
+z_index = -1
 texture = ExtResource( 42 )
 
 [node name="Grass" type="Sprite" parent="World/BuildingGrid"]
@@ -145,7 +147,7 @@ visible = false
 position = Vector2( 119, 231 )
 
 [node name="Hedgehog" parent="World/BuildingGrid" instance=ExtResource( 6 )]
-position = Vector2( 360, 89 )
+position = Vector2( 329, 90 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="World/BuildingGrid/Hedgehog"]
 frames = ExtResource( 38 )
@@ -167,16 +169,19 @@ script = ExtResource( 28 )
 [node name="Sprite" type="Sprite" parent="World/BuildingGrid"]
 position = Vector2( 382, 138 )
 scale = Vector2( 1, 0.967742 )
+z_index = -1
 texture = ExtResource( 36 )
 
 [node name="Sprite2" type="Sprite" parent="World/BuildingGrid"]
 position = Vector2( 382, 189 )
 scale = Vector2( 1, 0.967742 )
+z_index = -1
 texture = ExtResource( 36 )
 
 [node name="Sprite3" type="Sprite" parent="World/BuildingGrid"]
 position = Vector2( 382, 240 )
 scale = Vector2( 1, 0.967742 )
+z_index = -1
 texture = ExtResource( 36 )
 
 [node name="Shaft" type="Sprite" parent="World/BuildingGrid"]
@@ -488,6 +493,12 @@ margin_bottom = 22.5
 theme = ExtResource( 21 )
 align = 1
 valign = 1
+
+[node name="itemSpawner" type="Area2D" parent="."]
+position = Vector2( 196, -25 )
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 668, 89 )
 
 [connection signal="enable_next_room" from="World/BuildingGrid/Room_1" to="World/BuildingGrid/Room_2" method="_on_Room_1_enable_next_room"]
 [connection signal="spawn_hedgehog" from="World/BuildingGrid/Room_1" to="World/BuildingGrid" method="_on_spawn_hedgehog"]
