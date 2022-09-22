@@ -72,7 +72,6 @@ outlines = [ PoolVector2Array( -32, -32, -3, -32, -3, -93, -386, -93, -386, -94,
 [node name="World" type="Node2D" parent="."]
 
 [node name="Background" type="Sprite" parent="World"]
-visible = false
 position = Vector2( 320, 180 )
 texture = ExtResource( 1 )
 
@@ -92,26 +91,22 @@ position = Vector2( 327, 129 )
 
 [node name="Room_2" parent="World/BuildingGrid" instance=ExtResource( 7 )]
 visible = false
-
 position = Vector2( 223, 129 )
 
 [node name="Room_3" parent="World/BuildingGrid" instance=ExtResource( 7 )]
 visible = false
 position = Vector2( 119, 129 )
 
-
 [node name="Room_4" parent="World/BuildingGrid" instance=ExtResource( 7 )]
 position = Vector2( 327, 180 )
 
 [node name="Room_5" parent="World/BuildingGrid" instance=ExtResource( 7 )]
 visible = false
-
 position = Vector2( 223, 180 )
 
 [node name="Room_6" parent="World/BuildingGrid" instance=ExtResource( 7 )]
 visible = false
 position = Vector2( 119, 180 )
-
 
 [node name="Room_7" parent="World/BuildingGrid" instance=ExtResource( 7 )]
 position = Vector2( 327, 231 )
@@ -132,6 +127,7 @@ frames = ExtResource( 38 )
 playing = true
 
 [node name="Line2D" type="Line2D" parent="World/BuildingGrid"]
+visible = false
 
 [node name="Sprite" type="Sprite" parent="World/BuildingGrid"]
 position = Vector2( 382, 138 )
@@ -418,9 +414,18 @@ align = 1
 valign = 1
 
 [connection signal="enable_next_room" from="World/BuildingGrid/Room_1" to="World/BuildingGrid/Room_2" method="_on_Room_1_enable_next_room"]
+[connection signal="spawn_hedgehog" from="World/BuildingGrid/Room_1" to="World/BuildingGrid" method="_on_spawn_hedgehog"]
 [connection signal="enable_next_room" from="World/BuildingGrid/Room_2" to="World/BuildingGrid/Room_3" method="_on_Room_2_enable_next_room"]
+[connection signal="spawn_hedgehog" from="World/BuildingGrid/Room_2" to="World/BuildingGrid" method="_on_spawn_hedgehog"]
+[connection signal="spawn_hedgehog" from="World/BuildingGrid/Room_3" to="World/BuildingGrid" method="_on_spawn_hedgehog"]
 [connection signal="enable_next_room" from="World/BuildingGrid/Room_4" to="World/BuildingGrid/Room_5" method="_on_Room_4_enable_next_room"]
+[connection signal="spawn_hedgehog" from="World/BuildingGrid/Room_4" to="World/BuildingGrid" method="_on_spawn_hedgehog"]
 [connection signal="enable_next_room" from="World/BuildingGrid/Room_5" to="World/BuildingGrid/Room_6" method="_on_Room_5_enable_next_room"]
+[connection signal="spawn_hedgehog" from="World/BuildingGrid/Room_5" to="World/BuildingGrid" method="_on_spawn_hedgehog"]
+[connection signal="spawn_hedgehog" from="World/BuildingGrid/Room_6" to="World/BuildingGrid" method="_on_spawn_hedgehog"]
 [connection signal="enable_next_room" from="World/BuildingGrid/Room_7" to="World/BuildingGrid/Room_8" method="_on_Room_7_enable_next_room"]
+[connection signal="spawn_hedgehog" from="World/BuildingGrid/Room_7" to="World/BuildingGrid" method="_on_spawn_hedgehog"]
 [connection signal="enable_next_room" from="World/BuildingGrid/Room_8" to="World/BuildingGrid/Room_9" method="_on_Room_8_enable_next_room"]
+[connection signal="spawn_hedgehog" from="World/BuildingGrid/Room_8" to="World/BuildingGrid" method="_on_spawn_hedgehog"]
+[connection signal="spawn_hedgehog" from="World/BuildingGrid/Room_9" to="World/BuildingGrid" method="_on_spawn_hedgehog"]
 [connection signal="gui_input" from="UI/Expeditions/ExpeditionButton/CanvasLayer/OutsidePanel" to="UI/Expeditions/ExpeditionButton" method="_on_OutsidePanel_gui_input"]

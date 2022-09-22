@@ -15,6 +15,7 @@ var coldProtectionLevel: int = GameManager.TemperatureState.FROSTPUNK
 var coldness: float = 0
 var isActive: bool = true
 
+signal spawn_hedgehog()
 signal enable_next_room(roomName)
 
 func _ready():
@@ -96,8 +97,10 @@ func _on_BuildingPanel_build_room(buildingName):
 		return
 	
 	GameManager.remove_sticks(room.costSticks)
-	GameManager.remove_sticks(room.costLeaves)
+	GameManager.remove_leaves(room.costLeaves)
 	lodging = room.hedgehogGain
+	for x in range(lodging):
+		emit_signal("spawn_hedgehog")
 	coldness = 0
 	isActive = true
 	foodProduction = room.dailyFood

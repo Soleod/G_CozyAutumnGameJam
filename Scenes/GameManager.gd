@@ -20,8 +20,8 @@ var gameTickTimer: Timer
 var PauseButton: TextureButton
 
 var food: int = 10
-var sticks: int = 100
-var leaves: int = 0
+var sticks: int = 5
+var leaves: int = 3
 var hedgehogs: int = 1
 
 var hour: int = 2
