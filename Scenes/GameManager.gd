@@ -31,7 +31,7 @@ var day: int = 0
 var currentTemp: int = 31
 var currentTempState: int = TemperatureState.WARM
 
-var tick_rate: float = 0.1
+var tick_rate: float = 1.0
 
 signal game_tick
 signal clock_tick
