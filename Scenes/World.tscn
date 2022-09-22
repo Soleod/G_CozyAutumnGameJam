@@ -484,6 +484,7 @@ margin_top = -22.5
 margin_right = 41.0
 margin_bottom = 22.5
 theme = ExtResource( 21 )
+custom_colors/font_color = Color( 0.580392, 0.407843, 0.47451, 1 )
 text = "Game Over
 You ran out of Food!
 Press F5 to restart"
@@ -507,6 +508,7 @@ margin_top = -22.5
 margin_right = 41.0
 margin_bottom = 22.5
 theme = ExtResource( 21 )
+custom_colors/font_color = Color( 0.580392, 0.407843, 0.47451, 1 )
 align = 1
 valign = 1
 
