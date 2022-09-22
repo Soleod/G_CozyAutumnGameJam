@@ -7,7 +7,7 @@ enum GameState {
 	EXPEDITION
 }
 
-enum Temperature {
+enum TemperatureState {
 	WARM,
 	CHILLY,
 	COLD,
@@ -19,14 +19,14 @@ var gameTickTimer: Timer
 var PauseButton: TextureButton
 
 var food: int = 0
-var sticks: int = 0
+var sticks: int = 100
 var leaves: int = 0
 var hedgehogs: int = 5
 
 var hour: int = 0
 var day: int = 0
-var currentTemp: int
-
+var currentTemp: int = 31
+var currentTempState: int = TemperatureState.WARM
 
 signal game_tick
 signal clock_tick
@@ -38,7 +38,7 @@ func _ready():
 	gameTickTimer = Timer.new()
 	add_child(gameTickTimer)
 	gameTickTimer.connect("timeout", self, "_on_Timer_timeout")
-	gameTickTimer.set_wait_time(0.8)
+	gameTickTimer.set_wait_time(0.1)
 	gameTickTimer.set_one_shot(false)
 	gameTickTimer.start()
 
@@ -70,6 +70,20 @@ func _on_Timer_timeout():
 			hour += 1
 			if hour == 8:
 				hour = 0
+				day += 1
+				if (day % 3 == 0):
+					currentTemp -= 1
+					if currentTemp <= 0:
+						currentTemp = 0
+				if currentTemp > 23:
+					currentTempState = TemperatureState.WARM
+				elif currentTemp > 15:
+					currentTempState = TemperatureState.CHILLY
+				elif currentTemp > 7:
+					currentTempState = TemperatureState.COLD
+				else:
+					currentTempState = TemperatureState.FROSTPUNK
+				print("Day: ", day, " Temp: ", currentTemp, " Temp State: ", currentTempState)
 			emit_signal("clock_tick")
 
 
@@ -86,7 +100,5 @@ func add_sticks(amount):
 	emit_signal("inventory_changed")
 	
 func remove_sticks(amount):
-	print("Kakao: ", sticks)
 	sticks -= amount
-	print("Makarena: ", sticks)
 	emit_signal("inventory_changed")
