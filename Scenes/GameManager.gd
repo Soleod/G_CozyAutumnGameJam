@@ -7,6 +7,13 @@ enum GameState {
 	EXPEDITION
 }
 
+enum Temperature {
+	WARM,
+	CHILLY,
+	COLD,
+	FROSTPUNK
+}
+
 var currentGameState: int
 var gameTickTimer: Timer
 var PauseButton: TextureButton
@@ -17,6 +24,9 @@ var leaves: int = 0
 var hedgehogs: int = 5
 
 var hour: int = 0
+var day: int = 0
+var currentTemp: int
+
 
 signal game_tick
 signal clock_tick
@@ -58,7 +68,7 @@ func _on_Timer_timeout():
 			emit_signal("game_tick")
 		else:
 			hour += 1
-			if hour == 24:
+			if hour == 8:
 				hour = 0
 			emit_signal("clock_tick")
 
@@ -73,4 +83,10 @@ func add_food(amount):
 
 func add_sticks(amount):
 	sticks += amount
+	emit_signal("inventory_changed")
+	
+func remove_sticks(amount):
+	print("Kakao: ", sticks)
+	sticks -= amount
+	print("Makarena: ", sticks)
 	emit_signal("inventory_changed")

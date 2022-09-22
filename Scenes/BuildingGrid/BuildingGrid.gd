@@ -7,7 +7,7 @@ var combinedLodging = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GameManager.connect("clock_tick", self, "_on_GameManager_game_tick")
+	GameManager.connect("game_tick", self, "_on_GameManager_game_tick")
 	for room in self.get_children():
 		roomDict[room.name] = room
 		print(roomDict[room.name].visible)

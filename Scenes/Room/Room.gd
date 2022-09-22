@@ -66,27 +66,36 @@ func BuildRoom(buildingTexture: StreamTexture):
 	emit_signal("enable_next_room", self.name.get_slice("_", 0) + "_" + String(nextRoomIndex))
 
 func _on_BuildingEmpty_build_room(buildingName, buildingTexture):
-	BuildRoom(buildingTexture)
-	foodProduction = 0
-	cost = 0
-	lodging = 0
-	coldness = 110
+	var tmpCost = 0
+	if (GameManager.sticks >= tmpCost):
+		GameManager.remove_sticks(tmpCost)
+		foodProduction = 0
+		cost = tmpCost
+		lodging = 0
+		coldness = 110
+		BuildRoom(buildingTexture)
 
 
 func _on_BuildingFood_build_room(buildingName, buildingTexture):
-	BuildRoom(buildingTexture)
-	foodProduction = 1
-	cost = 10
-	lodging = 0
-	coldness = 0
+	var tmpCost = 10
+	if (GameManager.sticks >= tmpCost):
+		GameManager.remove_sticks(tmpCost)
+		foodProduction = 1
+		cost = tmpCost
+		lodging = 0
+		coldness = 0
+		BuildRoom(buildingTexture)
 
 
 func _on_BuildingSleep_build_room(buildingName, buildingTexture):
-	BuildRoom(buildingTexture)
-	foodProduction = 0
-	cost = 10
-	lodging = 5
-	coldness = 0
+	var tmpCost = 10
+	if (GameManager.sticks >= tmpCost):
+		GameManager.remove_sticks(tmpCost)
+		foodProduction = 0
+		cost = tmpCost
+		lodging = 5
+		coldness = 0
+		BuildRoom(buildingTexture)
 
 
 func _on_Room1_enable_next_room(roomName):
