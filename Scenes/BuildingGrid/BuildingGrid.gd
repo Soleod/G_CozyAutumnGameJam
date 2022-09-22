@@ -6,6 +6,7 @@ var combinedFoodProduction = 0
 var combinedLodging = 0
 var hedgehogs = []
 var expeditionTargetPos: Vector2
+var nightMaterial = null
 
 var shadedElements = []
 
@@ -19,6 +20,7 @@ func _ready():
 		print(roomDict[room.name].visible)
 	expeditionTargetPos = $ExpeditionTarget.position
 	shadedElements = [$Bush, $Tree, $Grass]
+	nightMaterial = load("res://night_dark.tres")
 
 func _on_game_tick():
 	var tmpFoodProdution = 0
@@ -56,6 +58,17 @@ func _process(delta):
 			hourForShader -= 8.0
 		for e in shadedElements:
 			e.material.set("shader_param/Hour", hourForShader)
+		nightMaterial.set("shader_param/Hour", hourForShader)
+		for hedgehog in hedgehogs:
+			if(hedgehog.material != null):
+				hedgehog.material.set("shader_param/Hour", hourForShader)
+			if hedgehog.position.y <= 90:
+				if(hedgehog.material == null):
+					print("setting")
+					hedgehog.material = nightMaterial
+			elif(hedgehog.material != null):
+				print("unsetting")
+				hedgehog.material = null
 
 func _on_spawn_hedgehog():
 	var hedgehogScene = load("res://Scenes/Hedgehog/Hedgehog.tscn")
