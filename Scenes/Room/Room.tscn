@@ -252,7 +252,7 @@ margin_right = 129.0
 margin_bottom = 49.0
 rect_pivot_offset = Vector2( 12, 9 )
 theme = ExtResource( 1 )
-text = "-4"
+text = "-5"
 
 [node name="Label4" type="Label" parent="CanvasLayer/OutsidePanel/BuildingPanel/Control"]
 margin_left = 95.0
@@ -261,7 +261,7 @@ margin_right = 147.0
 margin_bottom = 49.0
 rect_pivot_offset = Vector2( 12, 9 )
 theme = ExtResource( 1 )
-text = "-2"
+text = "-5"
 
 [node name="LeafIcon" type="TextureRect" parent="CanvasLayer/OutsidePanel/BuildingPanel/Control"]
 margin_left = 104.0

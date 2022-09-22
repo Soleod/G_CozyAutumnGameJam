@@ -94,8 +94,8 @@ func getRoomProperties(buildingName):
 	match buildingName:
 		"MushroomRoom":
 			return {
-				"costSticks": 4,
-				"costLeaves": 2,
+				"costSticks": 5,
+				"costLeaves": 1,
 				"hedgehogGain": 0,
 				"dailyFood": 1,
 				"roomTexture": $Sprite/SpriteShrooms,
@@ -104,7 +104,7 @@ func getRoomProperties(buildingName):
 		"SleepingRoom":
 			return {
 				"costSticks": 5,
-				"costLeaves": 1,
+				"costLeaves": 5,
 				"hedgehogGain": 1,
 				"dailyFood": 0,
 				"roomTexture": $Sprite/SpriteSleep,
