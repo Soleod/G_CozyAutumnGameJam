@@ -21,7 +21,7 @@ var PauseButton: TextureButton
 var food: int = 0
 var sticks: int = 100
 var leaves: int = 0
-var hedgehogs: int = 5
+var hedgehogs: int = 1
 
 var hour: int = 0
 var day: int = 0
