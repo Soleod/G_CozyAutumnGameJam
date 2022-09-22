@@ -19,7 +19,6 @@ var cost: int = 0
 var lodging: int = 0
 var coldProtectionLevel: int = GameManager.TemperatureState.FROSTPUNK
 var coldness: float = 0
-var isActive: bool = true
 
 var roomType: String = "Empty"
 
@@ -67,7 +66,6 @@ func _on_GameManager_game_tick():
 	if(coldProtectionLevel < GameManager.currentTempState):
 		if(coldness >= 100):
 			coldness = 100
-			isActive = false
 			roomShader.set("shader_param/Coldness", coldness / 100)
 		else:
 			coldness += 25
@@ -80,7 +78,6 @@ func _on_GameManager_game_tick():
 				foodProduction = 0
 			"SleepingRoom":
 				foodProduction = -1
-				isActive = true
 
 func _on_OutsidePanel_gui_input(event):
 	if event is InputEventMouseButton:
@@ -132,7 +129,6 @@ func _on_BuildingPanel_build_room(buildingName):
 		print("DSADSA")
 		emit_signal("spawn_hedgehog")
 	coldness = 0
-	isActive = true
 	foodProduction = room.dailyFood
 	coldProtectionLevel = room.coldProtectionLevel
 	
@@ -201,17 +197,38 @@ func _on_UpgradeButton_pressed():
 			coldness = 0
 			GameManager.remove_leaves(1)
 			roomShader.set("shader_param/Coldness", 0)
+			match roomType:
+				"Empty":
+					pass
+				"MushroomRoom":
+					foodProduction = 1
+				"SleepingRoom":
+					foodProduction = 0
 		GameManager.TemperatureState.CHILLY:
 			upgradeButton.texture_normal = upgrade3
 			coldProtectionLevel = GameManager.TemperatureState.COLD
 			coldness = 0
 			GameManager.remove_leaves(1)
 			roomShader.set("shader_param/Coldness", 0)
+			match roomType:
+				"Empty":
+					pass
+				"MushroomRoom":
+					foodProduction = 1
+				"SleepingRoom":
+					foodProduction = 0
 		GameManager.TemperatureState.COLD:
 			upgradeButton.texture_normal = upgrade4
 			coldProtectionLevel = GameManager.TemperatureState.FROSTPUNK
 			coldness = 0
 			GameManager.remove_leaves(1)
 			roomShader.set("shader_param/Coldness", 0)
+			match roomType:
+				"Empty":
+					pass
+				"MushroomRoom":
+					foodProduction = 1
+				"SleepingRoom":
+					foodProduction = 0
 		GameManager.TemperatureState.FROSTPUNK:
 			pass

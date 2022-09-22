@@ -20,8 +20,7 @@ func _on_game_tick():
 	var tmpFoodProdution = 0
 	for room in self.get_children():
 		if room is Area2D:
-			if room.isActive:
-				tmpFoodProdution += room.foodProduction
+			tmpFoodProdution += room.foodProduction
 	combinedFoodProduction = tmpFoodProdution
 	print("Food Production: ", combinedFoodProduction)
 	GameManager.add_food(combinedFoodProduction - GameManager.hedgehogs)
