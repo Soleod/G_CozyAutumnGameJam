@@ -32,7 +32,7 @@ func _ready():
 	outsidePanel = $CanvasLayer/OutsidePanel
 	roomSprite = $Sprite
 	roomShader = roomSprite.material
-	notEnoughResDialog = $CanvasLayer/NotEnoughRes
+	notEnoughResDialog = $CanvasLayer/OutsidePanel/NotEnoughRes
 	upgradeButton = $UpgradeButton
 	
 	upgrade1 = load("res://Art/Shroom Room/AddLeaves_1.png")
@@ -114,7 +114,6 @@ func getRoomProperties(buildingName):
 func _on_BuildingPanel_build_room(buildingName):
 	
 	var room = getRoomProperties(buildingName)
-	roomType = buildingName
 	
 	if GameManager.sticks < room.costSticks:
 		notEnoughResDialog.show()
@@ -127,6 +126,7 @@ func _on_BuildingPanel_build_room(buildingName):
 	GameManager.remove_sticks(room.costSticks)
 	GameManager.remove_leaves(room.costLeaves)
 	lodging = room.hedgehogGain
+	roomType = buildingName
 	print("GAIN: " + str(lodging))
 	for x in range(lodging):
 		print("DSADSA")

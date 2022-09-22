@@ -339,7 +339,7 @@ margin_right = 96.0
 margin_bottom = 48.0
 texture = ExtResource( 12 )
 
-[node name="NotEnoughRes" parent="CanvasLayer" instance=ExtResource( 20 )]
+[node name="NotEnoughRes" parent="CanvasLayer/OutsidePanel" instance=ExtResource( 20 )]
 visible = false
 margin_left = 268.0
 margin_top = 155.0
@@ -347,11 +347,11 @@ margin_right = 368.0
 margin_bottom = 209.0
 dialogText = "Not enough resources!"
 
-[node name="TextureRect" parent="CanvasLayer/NotEnoughRes" index="0"]
+[node name="TextureRect" parent="CanvasLayer/OutsidePanel/NotEnoughRes" index="0"]
 margin_right = 100.0
 margin_bottom = 54.0
 
-[node name="DialogText" parent="CanvasLayer/NotEnoughRes" index="3"]
+[node name="DialogText" parent="CanvasLayer/OutsidePanel/NotEnoughRes" index="3"]
 margin_left = 14.0
 margin_top = 9.0
 margin_right = 90.0
@@ -364,4 +364,4 @@ margin_bottom = 36.0
 [connection signal="pressed" from="CanvasLayer/OutsidePanel/BuildingPanel/Button_food" to="CanvasLayer/OutsidePanel/BuildingPanel" method="_on_Button_food_pressed"]
 [connection signal="pressed" from="CanvasLayer/OutsidePanel/BuildingPanel/Close" to="." method="_on_Close_pressed"]
 
-[editable path="CanvasLayer/NotEnoughRes"]
+[editable path="CanvasLayer/OutsidePanel/NotEnoughRes"]

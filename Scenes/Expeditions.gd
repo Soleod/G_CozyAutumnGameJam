@@ -25,8 +25,8 @@ func _on_expedition_finished():
 	expeditionButton.show()
 	match(randi() % 3):
 		0:
-			GameManager.add_sticks((randi() % 9 + 4))
+			GameManager.add_sticks((randi() % 5 + 4))
 		1:
-			GameManager.add_leaves((randi() % 5 + 2))
+			GameManager.add_leaves((randi() % 3 + 2))
 		2:
-			GameManager.add_food((randi() % 21 + 10))
+			GameManager.add_food((randi() % 11 + 10))
