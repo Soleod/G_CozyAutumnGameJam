@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://Art/A_Background.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/PauseLabel/PauseLabel.tscn" type="PackedScene" id=2]
@@ -37,6 +37,7 @@
 [ext_resource path="res://Art/UI/Dialog Confirm/No.png" type="Texture" id=35]
 [ext_resource path="res://Art/Corridor/Corridor_entrance.png" type="Texture" id=36]
 [ext_resource path="res://Art/Corridor/Corridor.png" type="Texture" id=37]
+[ext_resource path="res://Art/hedgehog_anim.tres" type="SpriteFrames" id=38]
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -1575,7 +1576,12 @@ valign = 1
 [node name="Hedgehog" parent="World/BuildingGrid" instance=ExtResource( 6 )]
 position = Vector2( 316, 91 )
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="World/BuildingGrid/Hedgehog"]
+frames = ExtResource( 38 )
+playing = true
+
 [node name="Line2D" type="Line2D" parent="World/BuildingGrid"]
+visible = false
 
 [node name="Shaft" type="Sprite" parent="World/BuildingGrid"]
 position = Vector2( 410, 184 )
