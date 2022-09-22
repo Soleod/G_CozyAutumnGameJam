@@ -7,6 +7,8 @@ var combinedLodging = 0
 var hedgehogs = []
 var expeditionTargetPos: Vector2
 
+var shadedElements = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameManager.connect("clock_tick", self, "_on_clock_tick")
@@ -15,6 +17,7 @@ func _ready():
 		roomDict[room.name] = room
 		print(roomDict[room.name].visible)
 	expeditionTargetPos = $ExpeditionTarget.position
+	shadedElements = [$Bush, $Tree, $Grass]
 
 func _on_clock_tick():
 	var tmpFoodProdution = 0
@@ -42,10 +45,19 @@ func _get_expedition_path(hedgehog):
 func _get_normal_path(hedgehog):
 	return self.get_simple_path(hedgehog.position, Vector2(rand_range(0,620), rand_range(0,360)))
 
+var hourForShader = 1.0
+
+func _process(delta):
+	if(GameManager.currentGameState == GameManager.GameState.RUNNING):
+		hourForShader += delta * (1.0 / GameManager.tick_rate)
+		if hourForShader >= 8.0:
+			hourForShader -= 8.0
+		for e in shadedElements:
+			e.material.set("shader_param/Hour", hourForShader)
 
 func _on_spawn_hedgehog():
 	var hedgehogScene = load("res://Scenes/Hedgehog/Hedgehog.tscn")
 	var instance = hedgehogScene.instance()
-	add_child_below_node(instance, hedgehogs[0])
+	add_child_below_node(hedgehogs[0], instance)
 	hedgehogs.append(instance)
 	GameManager.hedgehogs += 1

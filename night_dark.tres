@@ -1,0 +1,31 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[sub_resource type="GDScript" id=1]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform float Hour;
+
+void fragment() {
+	vec4 curr_color = texture(TEXTURE,UV);
+	float brightness = 1.0;
+	if(Hour < 4.0) {
+		brightness = (4.0 - Hour) / 4.0;
+	} else {
+		brightness = (-4.0 + Hour) / 4.0;
+	}
+	
+	brightness = (1.0 - (brightness * 0.5));
+	if(curr_color.a > 0.01) {
+		COLOR.rgb = curr_color.rgb * brightness;
+		COLOR.a = 1.0;
+	} else {
+		COLOR.a = 0.0;
+	}
+}"
+script = SubResource( 1 )
+
+[resource]
+shader = SubResource( 2 )
+shader_param/Hour = null
