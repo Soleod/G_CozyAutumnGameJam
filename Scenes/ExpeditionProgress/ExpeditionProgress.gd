@@ -16,8 +16,9 @@ func _ready():
 
 
 func _process(delta):
-	progress += delta/expeditionTime * (1.0 / GameManager.tick_rate)
-	hedgehog.position = startPos.linear_interpolate(endPos, progress)
-	if progress >= 1:
-		emit_signal("expedition_finished")
-		free()
+	if GameManager.currentGameState == GameManager.GameState.RUNNING:
+		progress += delta/expeditionTime * (1.0 / GameManager.tick_rate)
+		hedgehog.position = startPos.linear_interpolate(endPos, progress)
+		if progress >= 1:
+			emit_signal("expedition_finished")
+			free()
