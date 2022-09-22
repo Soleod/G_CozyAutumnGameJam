@@ -124,6 +124,7 @@ margin_right = 640.0
 margin_bottom = 360.0
 
 [node name="BuildingPanel" type="Panel" parent="CanvasLayer/OutsidePanel"]
+visible = false
 margin_left = 196.0
 margin_top = 118.0
 margin_right = 431.0
