@@ -9,14 +9,14 @@ var expeditionTargetPos: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GameManager.connect("game_tick", self, "_on_game_tick")
+	GameManager.connect("clock_tick", self, "_on_clock_tick")
 	hedgehogs = [$Hedgehog]
 	for room in self.get_children():
 		roomDict[room.name] = room
 		print(roomDict[room.name].visible)
 	expeditionTargetPos = $ExpeditionTarget.position
 
-func _on_game_tick():
+func _on_clock_tick():
 	var tmpFoodProdution = 0
 	for room in self.get_children():
 		if room is Area2D:
@@ -25,12 +25,13 @@ func _on_game_tick():
 	print("Food Production: ", combinedFoodProduction)
 	GameManager.add_food(combinedFoodProduction - GameManager.hedgehogs)
 	for hedgehog in hedgehogs:
-		if randi() % 3 == 0:
-			var path
-			if hedgehog.onExpedition:
-				path = _get_expedition_path(hedgehog)
-			else:
-				path = _get_normal_path(hedgehog)
+		print("GO?")
+		var path = null
+		if hedgehog.onExpedition:
+			path = _get_expedition_path(hedgehog)
+		elif randi() % 6 == 0:
+			path = _get_normal_path(hedgehog)
+		if path != null:
 			var direction: Vector2 = Vector2.ZERO
 			direction = hedgehog.position - path[0]
 			hedgehog.path = path
@@ -45,6 +46,6 @@ func _get_normal_path(hedgehog):
 func _on_spawn_hedgehog():
 	var hedgehogScene = load("res://Scenes/Hedgehog/Hedgehog.tscn")
 	var instance = hedgehogScene.instance()
-	add_child(instance)
+	add_child_below_node(instance, hedgehogs[0])
 	hedgehogs.append(instance)
 	GameManager.hedgehogs += 1

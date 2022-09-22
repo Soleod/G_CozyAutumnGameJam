@@ -82,18 +82,13 @@ outlines = [ PoolVector2Array( -32, -32, -3, -32, -3, -93, -386, -93, -386, -94,
 script = ExtResource( 4 )
 
 [node name="Ground" type="Sprite" parent="World/BuildingGrid"]
-position = Vector2( -2, 59 )
+position = Vector2( 0, 59 )
 texture = ExtResource( 40 )
 centered = false
 
 [node name="Bush" type="Sprite" parent="World/BuildingGrid"]
 position = Vector2( 62, 1 )
 texture = ExtResource( 39 )
-centered = false
-
-[node name="TreeFg" type="Sprite" parent="World/BuildingGrid"]
-position = Vector2( 363, 50 )
-texture = ExtResource( 30 )
 centered = false
 
 [node name="Tree" type="Sprite" parent="World/BuildingGrid"]
@@ -108,13 +103,6 @@ texture = ExtResource( 42 )
 [node name="Grass" type="Sprite" parent="World/BuildingGrid"]
 position = Vector2( 320, 92 )
 texture = ExtResource( 41 )
-
-[node name="Hedgehog" parent="World/BuildingGrid" instance=ExtResource( 6 )]
-position = Vector2( 307, 90 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="World/BuildingGrid/Hedgehog"]
-frames = ExtResource( 38 )
-playing = true
 
 [node name="Room_1" parent="World/BuildingGrid" instance=ExtResource( 7 )]
 position = Vector2( 327, 129 )
@@ -148,6 +136,18 @@ position = Vector2( 223, 231 )
 [node name="Room_9" parent="World/BuildingGrid" instance=ExtResource( 7 )]
 visible = false
 position = Vector2( 119, 231 )
+
+[node name="Hedgehog" parent="World/BuildingGrid" instance=ExtResource( 6 )]
+position = Vector2( 360, 89 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="World/BuildingGrid/Hedgehog"]
+frames = ExtResource( 38 )
+playing = true
+
+[node name="TreeFg" type="Sprite" parent="World/BuildingGrid"]
+position = Vector2( 363, 50 )
+texture = ExtResource( 30 )
+centered = false
 
 [node name="BackgroundOfBackground" type="Sprite" parent="World/BuildingGrid"]
 material = SubResource( 9 )
